@@ -28,7 +28,7 @@ out = 1; % count for ball out of field data
 
 % Array for saving scenarios
 ballie_out = [];
-ballie_estimated = [];
+
 
 % Loop for offline setting - only middle marker considered
 
@@ -67,8 +67,15 @@ end
 
 
 % Plotting the scenarios
-plot(field_x,[field_z(1) field_z(1)],'k')
+th = 0:pi/50:2*pi;
+x = 4.21907;
+y = -0.527555;
+r = 0.11;
+xunit = r * cos(th) + x;
+yunit = r * sin(th) + y;
+plot(xunit,yunit)
 hold on
+plot(field_x,[field_z(1) field_z(1)],'k')
 plot(field_x,[field_z(2) field_z(2)],'k')
 plot([field_x(1) field_x(1)], field_z, 'k')
 plot([field_x(2) field_x(2)], field_z, 'k')
