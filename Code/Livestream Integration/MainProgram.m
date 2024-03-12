@@ -129,7 +129,7 @@ ball_track(i,1) = data.RigidBodies(1).z;
                 plot(ball_out_track(:,1), ball_out_track(:,2),'*r')
                 
                 
-                saveas(gcf,strcat('trial_output_decision_number_',int2str(pause_count),'.png'))
+                saveas(gcf,strcat('Match Data\match1_output_decision_number_',int2str(pause_count),'.png'))
                 boop_details(pause_count) = ball_out_time;
                 
 
