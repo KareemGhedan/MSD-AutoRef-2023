@@ -4,8 +4,8 @@
 
 % Connect to OptiTrack
 natnetclient = natnet;
-natnetclient.HostIP = '127.0.0.1';
-natnetclient.ClientIP = '127.0.0.1';
+natnetclient.HostIP = '192.168.5.101';
+natnetclient.ClientIP = '192.168.6.51';
 natnetclient.ConnectionType = 'Unicast';
 natnetclient.connect;
 
@@ -41,6 +41,7 @@ ball_track(i,1) = data.RigidBodies(1).z;
 % Last touch check algorithm comes here
 %%%%%%%%%%% Exactly here  or line 59 %%%%%%%%%%%%%%%%
 
+
     % We check ball_in every 2 data points, and interpolate them so there
     % is no overlap
     if(~rem(i,2))
@@ -69,7 +70,7 @@ ball_track(i,1) = data.RigidBodies(1).z;
         end
 
             % Show proof - if game state is false already
-            %if(~game_state)
+           % if(~game_state)
         if(data.fTimestamp - ball_out_time > 1) % for tomorrow's trial
                 
                 disp('Last touch was done by that guy!')
