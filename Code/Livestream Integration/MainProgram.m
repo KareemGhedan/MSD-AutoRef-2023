@@ -52,7 +52,7 @@ ball_track(i,1) = data.RigidBodies(1).z;
 
     % We check ball_in every 2 data points, and interpolate them so there
     % is no overlap
-    if(~rem(i,2))
+    if(i>1)
         ballie_track = [ball_track(i,1), ball_track(i,2)];
         ballie_prev_track = [ball_track(i-1,1), ball_track(i-1,2)];
         margin = 4;
@@ -151,12 +151,12 @@ ball_track(i,1) = data.RigidBodies(1).z;
             % Data resets itself if referee took no action for x seconds
 
              elseif(out_flag & data.fTimestamp - ball_out_time > 5)
-                 clear ball_out_track ball_track ball_out_time
+                 clear ball_out_track ball_out_time
                  dummy_count = 0;
                  out = 1;
                  ball_in = true;
                  out_flag = false;
-                 i = 1;
+                
             end
             %end
 end
