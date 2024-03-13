@@ -1,12 +1,10 @@
+% Old version save, just in case
 % Dummy main program to show how ballie_track is implemented
-% It turned into main program
 % 11/03/2024
 % Deniz Akyazi
 
 clc
 clear
-py.importlib.import_module('joblib');
-py.importlib.import_module('sklearn.ensemble');
 
 % Connect to OptiTrack
 natnetclient = natnet;
@@ -57,6 +55,39 @@ ball_track(i,1) = data.RigidBodies(1).z;
     % is no overlap
     if(i>1)
         [ball_in, margin, dummy_count] = BOOP(ball_track(i,1), ball_track(i,2),ball_track(i-1,1), ball_track(i-1,2),dummy_count);
+    %     ballie_track = [ball_track(i,1), ball_track(i,2)];
+    %     ballie_prev_track = [ball_track(i-1,1), ball_track(i-1,2)];
+    %     margin = 4;
+    %     out_threshold = 4;
+    %     intermediate_points = [ballie_prev_track; (ballie_track+ballie_prev_track)/2; ballie_track];
+    % 
+    %     for j = 1:3
+    % 
+    %         if intermediate_points(j,1)-ball_radius > field_z(1,2) || intermediate_points(j,2)-ball_radius > field_x(1,2)|| ...
+    %         intermediate_points(j,2)+ball_radius < field_x(1,1) || intermediate_points(j,1)+ball_radius < field_z(1,1)
+    % 
+    %             % Ensuring ball is out + compensate measurement errors
+    %             dummy_count = dummy_count + 1;
+    %             intermediate_points(j,1)
+    %             intermediate_points(j,2)
+    % 
+    %             if(dummy_count > out_threshold)
+    %                 ball_in = false;
+    %                 disp('ball_out')
+    %                 dummy_count = 0;
+    % 
+    %                 if (j-1 < margin)
+    %                     margin = j-1;
+    %                 end   
+    %             end
+    % 
+    %         else % If the ball doesn't continue to be out of play, reset the counter
+    %             dummy_count = 0;
+    %             ball_in = true;
+    % 
+    %         end
+    %     end
+    % 
     end
         if(~ball_in) % ball is out!
             if (~out_flag) % first time ball out since game 'START'
