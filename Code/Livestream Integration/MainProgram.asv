@@ -1,9 +1,12 @@
 % Dummy main program to show how ballie_track is implemented
+% It turned into main program
 % 11/03/2024
 % Deniz Akyazi
 
 clc
 clear
+py.importlib.import_module('joblib');
+py.importlib.import_module('sklearn.ensemble');
 
 % Connect to OptiTrack
 natnetclient = natnet;
@@ -33,6 +36,8 @@ pause_count = 0;
 % Parameters to save data
 match_track = [];
 boop_details = [];
+touch_track = zeros(5,3);
+lt_team = 'None';
 
 while (k)
 i = i+1;
@@ -47,46 +52,21 @@ ball_track(i,2) = data.RigidBodies(1).x;
 ball_track(i,1) = data.RigidBodies(1).z;
 
 % Last touch check algorithm comes here
-%%%%%%%%%%% Exactly here  or line 59 %%%%%%%%%%%%%%%%
+% Here we put touch detection and saving locs & times
+    for m = 1:5
+        if(predict_touch(matlabTable))
+            % a matrix where we save the locs & time if touch
+            touch_track(m,1) = data.RigidBodies(m+1).z;
+            touch_track(m,2) = data.RigidBodies(m+1).x;
+            touch_track(m,3) = data.fTimestamp;
+        end
+    end
 
 
     % We check ball_in every 2 data points, and interpolate them so there
     % is no overlap
     if(i>1)
         [ball_in, margin, dummy_count] = BOOP(ball_track(i,1), ball_track(i,2),ball_track(i-1,1), ball_track(i-1,2),dummy_count);
-    %     ballie_track = [ball_track(i,1), ball_track(i,2)];
-    %     ballie_prev_track = [ball_track(i-1,1), ball_track(i-1,2)];
-    %     margin = 4;
-    %     out_threshold = 4;
-    %     intermediate_points = [ballie_prev_track; (ballie_track+ballie_prev_track)/2; ballie_track];
-    % 
-    %     for j = 1:3
-    % 
-    %         if intermediate_points(j,1)-ball_radius > field_z(1,2) || intermediate_points(j,2)-ball_radius > field_x(1,2)|| ...
-    %         intermediate_points(j,2)+ball_radius < field_x(1,1) || intermediate_points(j,1)+ball_radius < field_z(1,1)
-    % 
-    %             % Ensuring ball is out + compensate measurement errors
-    %             dummy_count = dummy_count + 1;
-    %             intermediate_points(j,1)
-    %             intermediate_points(j,2)
-    % 
-    %             if(dummy_count > out_threshold)
-    %                 ball_in = false;
-    %                 disp('ball_out')
-    %                 dummy_count = 0;
-    % 
-    %                 if (j-1 < margin)
-    %                     margin = j-1;
-    %                 end   
-    %             end
-    % 
-    %         else % If the ball doesn't continue to be out of play, reset the counter
-    %             dummy_count = 0;
-    %             ball_in = true;
-    % 
-    %         end
-    %     end
-    % 
     end
         if(~ball_in) % ball is out!
             if (~out_flag) % first time ball out since game 'START'
@@ -102,8 +82,14 @@ ball_track(i,1) = data.RigidBodies(1).z;
             ball_out_track(out,2) = ball_track(i-margin,2);
 
             % Last Touch - with our confirmed index
-            %%%%%%%%%%%%% Yeah, here %%%%%%%%%%%%%%
-
+            [~, idx] = max(touch_track(:,1));
+            last_touch = touch_track(x,:);
+            if (idx > 3)
+                lt_team = 'A';
+            else
+                lt_team = 'B';
+            end
+            % Look up who is last touch
             % Send decision to referee
 
         end
@@ -137,7 +123,7 @@ ball_track(i,1) = data.RigidBodies(1).z;
                 % while(~game_state)
                 %     % we get game_state here too
                 % end
-                %java.lang.Thread.sleep( 9996 );
+                java.lang.Thread.sleep( 996 );
 
                 % reset the data from a fresh start
                 close all

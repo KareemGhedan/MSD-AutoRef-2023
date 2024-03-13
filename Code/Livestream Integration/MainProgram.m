@@ -36,6 +36,8 @@ pause_count = 0;
 % Parameters to save data
 match_track = [];
 boop_details = [];
+touch_track = zeros(5,3);
+lt_team = 'None';
 
 while (k)
 i = i+1;
@@ -50,7 +52,15 @@ ball_track(i,2) = data.RigidBodies(1).x;
 ball_track(i,1) = data.RigidBodies(1).z;
 
 % Last touch check algorithm comes here
-%%%%%%%%%%% Exactly here  or line 59 %%%%%%%%%%%%%%%%
+% Here we put touch detection and saving locs & times
+    for m = 1:5
+        if(predict_touch(matlabTable))
+            % a matrix where we save the locs & time if touch
+            touch_track(m,1) = data.RigidBodies(m+1).z;
+            touch_track(m,2) = data.RigidBodies(m+1).x;
+            touch_track(m,3) = data.fTimestamp;
+        end
+    end
 
 
     % We check ball_in every 2 data points, and interpolate them so there
@@ -72,9 +82,14 @@ ball_track(i,1) = data.RigidBodies(1).z;
             ball_out_track(out,2) = ball_track(i-margin,2);
 
             % Last Touch - with our confirmed index
-            %%%%%%%%%%%%% Yeah, here %%%%%%%%%%%%%%
-
-            % Send decision to referee
+            % Look up who is last touch
+            [~, idx] = max(touch_track(:,1));
+            last_touch = touch_track(x,:);
+            if (idx > 3)
+                lt_team = 'A';
+            else
+                lt_team = 'B';
+            end
 
         end
 
