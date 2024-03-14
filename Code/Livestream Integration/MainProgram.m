@@ -93,11 +93,13 @@ ball_track(i,1) = data.RigidBodies(1).z;
 
         end
 
-            % Show proof - if game state is false already
+            
             %if(~game_state)
                 
             if(~ball_in)
             if(data.fTimestamp - ball_out_time > 1) % for tomorrow's trial
+                
+                soccerRefereeUI(lt_team);
                 pause_count = pause_count+1; 
                 disp('Last touch was done by that guy!')
                 
