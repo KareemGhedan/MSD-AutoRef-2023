@@ -5,7 +5,7 @@ function [x,y,z,qx,qy,qz,qw,ts,id] = nncPolling(frame,i)
     % input i = the number of rigid body found from OptiTrack
     % output position,orientation in Quaternion, time stamp, rigid body id
 	
-    if isempty(data.RigidBodies(1))
+    if isempty(frame.RigidBodies(1))
         fprintf( '\tPacket is empty/stale\n' )
         fprintf( '\tMake sure the server is in Live mode or playing in playback\n\n')
         return
