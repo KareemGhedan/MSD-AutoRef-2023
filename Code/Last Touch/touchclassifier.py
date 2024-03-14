@@ -7,20 +7,29 @@ Original file is located at
     https://colab.research.google.com/drive/126Z1Nma9ek6geVx96CyUdZG_fxxkjoE7
 """
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sn
-import statistics
 # This library is needed to save RF model
 import joblib
+import statistics
+import numpy as np
+import pandas as pd
+import seaborn as sn
+import matplotlib.pyplot as plt
+from sklearn.metrics import roc_curve
+from sklearn.metrics import roc_auc_score
 
 # I need to use this version because Matlab has this version as well
 !pip install scikit-learn==1.3.0
 
-dataset = pd.read_csv('/content/NewDataset.csv')
+!pip show scikit-learn
 
-dataset[0]
+dataset = pd.read_csv('/content/Dataset_Last.csv')
+
+dataset = dataset.iloc[:,6:]
+dataset
+
+dataset.to_csv('Dataset.csv', index = False)
+
+pd.read_csv('Dataset.csv')
 
 """## Data Preprocessing
 
@@ -67,6 +76,20 @@ Showing the correlation between the features using a heatmap.
 
 sn.pairplot(dataset, hue='Touch')
 
+# This function given the dataset and its target value will produce
+# a heatmap which shows the correlation between each column parwise
+# and also the target value.
+def corr(dataframe,target_variable):
+
+    fig, ax = plt.subplots(figsize=(17,17))
+    correlation_matrix = dataframe.corr().round(2)
+    sn.heatmap(data=correlation_matrix, annot=True)
+
+    correlation = dataset.corr()[target_variable].abs().sort_values(ascending = False)
+    return correlation
+
+corr(dataset,"Touch")
+
 """**Checking Balancing**"""
 
 dataset.Touch.value_counts()
@@ -82,7 +105,6 @@ X = dataset.drop(columns=['Touch'], axis=1)
 from sklearn.model_selection import train_test_split
 import random
 
-# divide train test: 60 % - 20 % - 20%
 X_, X_test, y_, y_test = train_test_split(X, y, test_size = 0.20, random_state= 21)
 X_train, X_validation, y_train, y_validation = train_test_split(X_, y_, test_size = 0.20, random_state= 21)
 
@@ -107,50 +129,93 @@ print("************Results for Random Forest*************")
 print("Confusion Matrix for test Set\n")
 print(classification_report(y_test, y_pred_test_RF))
 
-"""pridict for different unseen data - 12-03-2024"""
+#Plotting Confusion Matrix
+confusion_matrix_RF = confusion_matrix(y_test,y_pred_test_RF)
+sn.heatmap(confusion_matrix_RF , annot=True,cmap="BuGn" , fmt='g')
+plt.tight_layout()
+plt.title('Confusion matrix RF\n')
 
-#  Define a function for feature extracting
-def feature_extractor(file):
-    # Reading Data
-    data = pd.read_csv(file)
-    # Choosing the ball and the turtle positions
-    targeted_columns = data.iloc[1:, [5,6,7,12,13,14]][4:]
-    # Define a header
-    targeted_columns.columns=['X_Ball', 'Y_Ball', 'Z_Ball', 'X_Turtle', 'Y_Turtle', 'Z_Turtle']
-    # Delete missing Values
-    targeted_columns = targeted_columns.dropna()
-    # Reset the index of the DataFrame
-    targeted_columns = targeted_columns.reset_index(drop=True)
-    cleaned_data = targeted_columns
-    cleaned_data = cleaned_data.apply(pd.to_numeric)
-    cleaned_data['X_dist']= cleaned_data['X_Ball'] - cleaned_data['X_Turtle']
-    cleaned_data['Y_dist']= cleaned_data['Y_Ball'] - cleaned_data['Y_Turtle']
-    cleaned_data['Z_dist']= cleaned_data['Z_Ball'] - cleaned_data['Z_Turtle']
-    cleaned_data['distance'] =  np.sqrt(cleaned_data['X_dist']**2 + cleaned_data['Y_dist']**2 + cleaned_data['Z_dist']**2)
-    return cleaned_data
+FPRate, TPRate, not_imp = roc_curve(y_test, y_pred_test_RF)
+AUC = roc_auc_score(y_test, y_pred_test_RF)
+plt.plot(FPRate,TPRate,label="data, AUC="+str(AUC))
+plt.legend(loc=4)
+plt.title ('ROC CURVE MLP')
+plt.show()
 
-"""**First Sample**"""
+print(f"The score for the AUC ROC Curve is: {round(AUC,2)*100}%")
 
-test_data = feature_extractor('/content/NoTouch1.csv')
+"""**Check the performance of the model for some real_time data.**"""
 
-test_data
+# Ground Truth: No_Touch
+data = {'X_dist': [0.0477],	'Y_dist':[-0.5307],	'Z_dist': [-0.4818],	'distance':[0.7184] }
+sample = pd.DataFrame.from_dict(data)
+sample
 
-test_data['Touch'] = 1
-test_data
+classifierRF.predict(sample)
 
-test_data_x = test_data.drop(columns=['Touch'], axis=1)
-test_data_y = test_data['Touch']
+# 2.0576	0.5674	-0.0068	2.5077	0.7825	-0.1793	-0.4500	-0.2151	0.1725	0.5278
+# Ground Truth: No_Touch
 
-test_data_x.shape
+data = {'X_dist': [-0.4500],	'Y_dist':[-0.2151],	'Z_dist': [0.1725],	'distance':[0.5278] }
+sample = pd.DataFrame.from_dict(data)
+sample
 
-y_predRF_test = classifierRF.predict(test_data_x.iloc[[1000]])
+y_predRF_test = classifierRF.predict(sample)
 y_predRF_test
+
+# 2.0821	0.5607	-0.2054	2.5076	0.7827	-0.1792	-0.4255	-0.2219	-0.0261	0.4807
+# Ground Truth: No_Touch
+
+data = {'X_dist': [-0.4255],'Y_dist':[-0.2219],	'Z_dist': [-0.0261],	'distance':[0.4807] }
+sample = pd.DataFrame.from_dict(data)
+sample
+
+y_predRF_test = classifierRF.predict(sample)
+y_predRF_test
+
+# 2.6064	0.5590	-0.7042	2.5072	0.7827	-0.1795	0.0991	-0.2236	-0.5247	0.5789
+# Ground Truth: No_Touch
+
+data = {'X_Ball':[2.6064],'Y_Ball':[0.5590],'Z_Ball':[-0.7042],'X_Turtle':[2.5072],'Y_Turtle': [0.7827],'Z_Turtle': [-0.1795],	'X_dist': [0.0991],'Y_dist':[-0.2236],	'Z_dist': [-0.5247],	'distance':[0.5789] }
+sample = pd.DataFrame.from_dict(data)
+sample
+
+y_predRF_test = classifierRF.predict(sample)
+y_predRF_test
+
+#Ground Truth: No Touch
+# 5.0089	0.1061	-2.3813	2.1083	0.7874	-1.2885	2.9005	-0.6813	-1.0927	3.1735
+
+data = {'X_dist': [2.9005],'Y_dist':[-0.6813],	'Z_dist': [-1.0927],	'distance':[3.1735] }
+sample = pd.DataFrame.from_dict(data)
+sample
+
+y_predRF_test = classifierRF.predict(sample)
+y_predRF_test
+
+# We don't need to use it anymore because this part now is done in Matlab
+#  Define a function for feature extracting
+# def feature_extractor(file):
+#     # Reading Data
+#     data = pd.read_csv(file)
+#     # Choosing the ball and the turtle positions
+#     targeted_columns = data.iloc[1:, [5,6,7,12,13,14]][4:]
+#     # Define a header
+#     targeted_columns.columns=['X_Ball', 'Y_Ball', 'Z_Ball', 'X_Turtle', 'Y_Turtle', 'Z_Turtle']
+#     # Delete missing Values
+#     targeted_columns = targeted_columns.dropna()
+#     # Reset the index of the DataFrame
+#     targeted_columns = targeted_columns.reset_index(drop=True)
+#     cleaned_data = targeted_columns
+#     cleaned_data = cleaned_data.apply(pd.to_numeric)
+#     cleaned_data['X_dist']= cleaned_data['X_Ball'] - cleaned_data['X_Turtle']
+#     cleaned_data['Y_dist']= cleaned_data['Y_Ball'] - cleaned_data['Y_Turtle']
+#     cleaned_data['Z_dist']= cleaned_data['Z_Ball'] - cleaned_data['Z_Turtle']
+#     cleaned_data['distance'] =  np.sqrt(cleaned_data['X_dist']**2 + cleaned_data['Y_dist']**2 + cleaned_data['Z_dist']**2)
+#     return cleaned_data.iloc[:,6:]
 
 """**Saving RF Model**"""
 
 joblib.dump(classifierRF, "RFClassifier")
 
 RF_Classifier = joblib.load("RFClassifier")
-
-y_predRF_test = RF_Classifier.predict(test_data_x.iloc[[4]])
-y_predRF_test

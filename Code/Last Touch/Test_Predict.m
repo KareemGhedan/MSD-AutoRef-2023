@@ -14,8 +14,7 @@ X_dist = X_Ball - X_Turtle;
 Y_dist = Y_Ball - Y_Turtle;
 Z_dist = Z_Ball - Z_Turtle;
 distance = [1.654131];%[0.200467];
-matlabTable= table(X_Ball,Y_Ball,Z_Ball,X_Turtle,Y_Turtle,Z_Turtle,X_dist,...
-    Y_dist, Z_dist, distance);
+matlabTable= table(X_dist, Y_dist, Z_dist, distance);
 
 % Call function to predict touch
 prediction = predict_touch(matlabTable);
