@@ -1,6 +1,9 @@
 function nnc = setNNC(connectionType, clientIP, hostIP)
     % Function to instantiate natnet client class
     % Require no input, 3 optional input
+    % Input connectionType: 'Unicast' default or 'Multicast'
+    % Input clientIP: your IP (e.g. '192.168.232')
+    % Input hostIP: server IP (e.g. '192.168.5.101')
 
     if nargin > 3
         error("Error: Too many inputs")
