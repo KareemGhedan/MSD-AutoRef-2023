@@ -1,4 +1,6 @@
-function [predict] = predict_touch(table)
+% This function is used to load the model trained in Python and get
+% prediction of touch/no touch
+function [prediction] = predict_touch(table)
     % load model
     model = py.joblib.load('RFClassifier');
     % Convert table to cell array
@@ -17,9 +19,6 @@ function [predict] = predict_touch(table)
     pyDataFrame = pandas.DataFrame(pyDict);
     % Use the pandas DataFrame to make predictions
     predictions = model.predict(pyDataFrame);
-    % Display Prediction
-    %disp(int64(predictions))
-    predict = int64(predictions);
+    % Convert np array to int
+    prediction = int64(predictions);
 end
-
-
