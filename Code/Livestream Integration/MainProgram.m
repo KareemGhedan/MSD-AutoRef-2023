@@ -66,7 +66,7 @@ ball_track(i,1) = data.RigidBodies(1).z;
     % We check ball_in every 2 data points, and interpolate them so there
     % is no overlap
     if(i>1)
-        [ball_in, margin, dummy_count] = BOOP(ball_track(i,1), ball_track(i,2),ball_track(i-1,1), ball_track(i-1,2),dummy_count);
+        [ball_in, dummy_count] = BOOP(ball_track(i,1), ball_track(i,2),dummy_count);
     end
         if(~ball_in) % ball is out!
             if (~out_flag) % first time ball out since game 'START'
