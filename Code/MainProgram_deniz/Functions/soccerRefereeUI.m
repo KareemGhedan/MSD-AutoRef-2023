@@ -1,95 +1,81 @@
 function fig = soccerRefereeUI(teamName)
     % Create a figure window
-    fig = figure('Name', 'Robo Soccer Referee', 'NumberTitle', 'off', ...
-                 'Position', [200, 200, 300, 150], 'MenuBar', 'none', ...
-                 'ToolBar', 'none', 'Color', [0 0.5 0.5]);
+    fig = figure('Name', 'Robo Soccer Assistant Referee', 'NumberTitle', 'off', ...
+                 'Position', [200, 200, 500, 300], 'MenuBar', 'none', ...
+                 'ToolBar', 'none', 'Color', [0 0.5 0.5], ...
+                 'CloseRequestFcn', @closeRequestFcn); % Set background color to teal
 
-    % Add text to display last touch information
-    txtLastTouch = uicontrol('Style', 'text', 'String', 'Last Touch: None', ...
-                             'Position', [50, 50, 200, 30], ...
-                             'BackgroundColor', [0 0.5 0.5]);
+    % Add text box to display last touch information
+    txtLastTouch = uicontrol('Style', 'edit', 'String', ['Last Touch: ', teamName], ...
+                             'Position', [50, 200, 400, 50], ...
+                             'BackgroundColor', [1 1 1], 'FontSize', 12, 'FontWeight', 'bold', ...
+                             'HorizontalAlignment', 'center', 'Enable', 'inactive'); % Set text background color to white, and make it read-only
+
+    % Add button to display proof of decision
+    btnProof = uicontrol('Style', 'pushbutton', 'String', 'Show Proof of Decision', ...
+                         'Position', [50, 100, 200, 50], ...
+                         'Callback', @showProofCallback);
+
+    % Add button to close the window
+    btnClose = uicontrol('Style', 'pushbutton', 'String', 'Close', ...
+                         'Position', [300, 100, 150, 50], ...
+                         'Callback', @closeCallback);
 
     % Function to update UI with the last touch information
-    function updateUI(teamName)
+    function updateLastTouch(teamName)
         set(txtLastTouch, 'String', ['Last Touch: ', teamName]);
     end
 
-    % Call the updateUI function with the initial team name
-    updateUI(teamName);
+    % Function to display proof of decision (simple plot)
+    function showProofCallback(~, ~)
+        % % Generate sample data for plot
+        % x = linspace(0, 10, 100);
+        % y = sin(x);
+        % 
+        % % Plot the data
+        % figure('Name', 'Proof of Decision', 'NumberTitle', 'off');
+        % plot(x, y);
+        % title('Proof of Decision');
+        % xlabel('X-axis');
+        % ylabel('Y-axis');
+        % grid on;
+        % 
+        plot_fun();
+        % Close the main UI window
+        close(fig);
+    end
+
+    % Function to handle the close button
+    function closeCallback(~, ~)
+        % Close the main UI window
+        close(fig);
+    end
+
+    % Function to handle the close request of the main UI window
+    function closeRequestFcn(~, ~)
+        % Close the figure
+        closereq;
+    end
+
+
+    % Call the updateLastTouch function with the initial team name
+    updateLastTouch(teamName);
 end
 
-% % Add this when the referee call happens or ball goes out of play
-% % Open the UI with initial team name
-% % make this variable usable for closing functions too
-% fig = soccerRefereeUI('Team 1');
-% 
-% % call this is close the figure once the game resumes
-% % Close the figure
-% close(fig);
-% clear fig;
 
 
-% function soccerRefereeUI(teamName)
-%     % Create a figure window
-%     fig = figure('Name', 'Robo Soccer Referee', 'NumberTitle', 'off', ...
-%                  'Position', [200, 200, 300, 150], 'MenuBar', 'none', ...
-%                  'ToolBar', 'none');
-% 
-%     % Add text to display last touch information
-%     txtLastTouch = uicontrol('Style', 'text', 'String', 'Last Touch: None', ...
-%                              'Position', [50, 50, 200, 30]);
-% 
-%     % Function to update UI with the last touch information
-%     function updateUI(teamName)
-%         set(txtLastTouch, 'String', ['Last Touch: ', teamName]);
-%     end
-% 
-%     % Call the updateUI function with the initial team name
-%     updateUI(teamName);
-% 
-%     % Close the figure after 20 seconds
-%     pause(20);
-%     close(fig);
-% end
 
-% % calling the functionto update with the team who touched it last time
-% soccerRefereeUI('Team 1');
 
-% function soccerRefereeUI(teamName)
-%     % Create a figure window
-%     fig = figure('Name', 'Robo Soccer Referee', 'NumberTitle', 'off', ...
-%                  'Position', [200, 200, 300, 150], 'MenuBar', 'none', ...
-%                  'ToolBar', 'none');
-% 
-%     % Add text to display last touch information
-%     txtLastTouch = uicontrol('Style', 'text', 'String', 'Last Touch: None', ...
-%                              'Position', [50, 50, 200, 30]);
-% 
-%     % Function to update UI with the last touch information
-%     function updateUI(teamName)
-%         set(txtLastTouch, 'String', ['Last Touch: ', teamName]);
-%     end
-% 
-%     % Call the updateUI function with the initial team name
-%     updateUI(teamName);
-% 
-%     % Return handle of the figure
-%     varargout{1} = fig
-% end
-% 
-% function closeFigure(fig)
-%     % Close the figure
-%     close(fig);
-% end
-% 
-% % % Call soccerRefereeUI to create the UI window
-% % % the function will return the figurehandle, and this is used to close
-% % the image once the use is over
-% % figHandle = soccerRefereeUI('Team 1'); 
-% % 
-% % % Wait for 20 seconds
-% % pause(20);
-% % 
-% % % Call closeFigure to close the figure
-% % closeFigure(figHandle);
+function plot_fun(~,~)
+% Generate sample data for plot
+x = linspace(0, 10, 100);
+y = sin(x);
 
+% Plot the data
+figure('Name', 'Proof of Decision', 'NumberTitle', 'off');
+plot(x, y);
+title('Proof of Decision');
+xlabel('X-axis');
+ylabel('Y-axis');
+grid on;
+end
