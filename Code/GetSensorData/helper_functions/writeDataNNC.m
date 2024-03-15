@@ -1,8 +1,8 @@
 function writeDataNNC(data, name)
     % Write pose data to position_logs directory for each rigid body
     % Format: [x,y,z,qx,qy,qz,qw, ts, id, x,y,z,qx,qy,qz,qw, ts, id, ...]
-    % input data = pose data from nncPollAll/nncPolling function
-    % input name = name of the file, if not yet it'll be created
+    % input data = pose data from nncPollAll function
+    % input name = name of the file
     % Require 2 input
 
     if nargin ~= 2
