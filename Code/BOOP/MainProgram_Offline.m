@@ -68,9 +68,9 @@ end
 
 % Plotting the scenarios
 th = 0:pi/50:2*pi;
-x = 4.21907;
-y = -0.527555;
-r = 0.11;
+x = -1.37725;
+y = 3.56945;
+r = 0.26;
 xunit = r * cos(th) + x;
 yunit = r * sin(th) + y;
 plot(xunit,yunit)
