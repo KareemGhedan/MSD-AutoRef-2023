@@ -7,6 +7,18 @@ function LastTouch_plot(t, last_touch_data, last_touch, ballID, robot1ID, robot2
     % Input ballID = ball id from OptiTrack
     % Input robot{n}ID = n robot id from OptiTrack
 
+    switch nargin
+        case 5
+            robot2ID = 0;
+            robot3ID = 0;
+            robot4ID = 0;
+        case 6
+            robot3ID = 0;
+            robot4ID = 0;
+        case 7
+            robot4ID = 0;
+    end
+
     % Get ball pos
     [~, col] = find(last_touch_data == ballID);
     ball_pos = last_touch_data(1:3,col(1));
@@ -14,11 +26,26 @@ function LastTouch_plot(t, last_touch_data, last_touch, ballID, robot1ID, robot2
     % Get robots pos and rearrange it to [Robot1 Robot2 Robot3 Robot4]
     robots_pos = [last_touch_data(1:3,:); last_touch_data(9,:)];
     robots_pos(:,col) = [];
-    [~, Rcol1] = find(robots_pos == robot1ID);
-    [~, Rcol2] = find(robots_pos == robot2ID);
-    [~, Rcol3] = find(robots_pos == robot3ID);
-    [~, Rcol4] = find(robots_pos == robot4ID);
-    data = [robots_pos(:,Rcol1) robots_pos(:,Rcol2) robots_pos(:,Rcol3) robots_pos(:,Rcol4)];
+    switch size(last_touch,2)
+        case 1
+            [~, Rcol1] = find(robots_pos == robot1ID);
+            data = [robots_pos(:,Rcol1)];
+        case 2
+            [~, Rcol1] = find(robots_pos == robot1ID);
+            [~, Rcol2] = find(robots_pos == robot2ID);
+            data = [robots_pos(:,Rcol1) robots_pos(:,Rcol2)];
+        case 3
+            [~, Rcol1] = find(robots_pos == robot1ID);
+            [~, Rcol2] = find(robots_pos == robot2ID);
+            [~, Rcol3] = find(robots_pos == robot3ID);
+            data = [robots_pos(:,Rcol1) robots_pos(:,Rcol2) robots_pos(:,Rcol3)];
+        case 4
+            [~, Rcol1] = find(robots_pos == robot1ID);
+            [~, Rcol2] = find(robots_pos == robot2ID);
+            [~, Rcol3] = find(robots_pos == robot3ID);
+            [~, Rcol4] = find(robots_pos == robot4ID);
+            data = [robots_pos(:,Rcol1) robots_pos(:,Rcol2) robots_pos(:,Rcol3) robots_pos(:,Rcol4)];
+    end
     rplt = [data; last_touch];
     
     % Create names of robots and dist
