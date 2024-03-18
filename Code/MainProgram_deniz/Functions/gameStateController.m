@@ -100,12 +100,15 @@ function gameStateController()
         'Color', [0.5 0 0.5]);
 
     % Create buttons for Play and Pause
-    playButton = uibutton(fig, 'push', 'Text', 'Play', 'Position', [50 100 200 100], 'ButtonPushedFcn', @(playButton,event) changeGameState('play'));
-    pauseButton = uibutton(fig, 'push', 'Text', 'Pause', 'Position', [250 100 200 100], 'ButtonPushedFcn', @(pauseButton,event) changeGameState('pause'));
+    % playButton = uibutton(fig, 'push', 'Text', 'Play', 'Position', [50 100 200 100], 'ButtonPushedFcn', @(playButton,event) changeGameState('play'));
+    % pauseButton = uibutton(fig, 'push', 'Text', 'Pause', 'Position', [250 100 200 100], 'ButtonPushedFcn', @(pauseButton,event) changeGameState('pause'));
+    playButton = uibutton(fig, 'push', 'Text', 'Play', 'Position', [50 100 200 100], 'ButtonPushedFcn', @(playButton,event) changeGameState(1)); % play
+    pauseButton = uibutton(fig, 'push', 'Text', 'Pause', 'Position', [250 100 200 100], 'ButtonPushedFcn', @(pauseButton,event) changeGameState(0)); % pause
 
     % Initialize game state
     global data;
-    data = struct('gameState', 'pause'); % Start with the game paused
+    % data = struct('gameState', 'pause'); % Start with the game paused
+    data = struct('gameState', 0); % Start with the game paused, 0 is pause and 1 is play
 
     % Function to change the game state
     function changeGameState(newState)
@@ -119,7 +122,7 @@ function gameStateController()
     function main()
         % This is just an example function, replace it with your actual main function
         gameState = data.gameState;
-        disp(['Main function called with game state: ', gameState]);
+        disp(['Main function called with game state: %i\n', gameState]);
         % Perform actions based on the game state
 
         % Communicate with another function or script here
