@@ -36,12 +36,13 @@ while (true)
     i = i+1;
     % Get the livestream data
     default_data = nncPollAll(nnc);
-    ballID = 1009;
-    robotID = [1001 1002 1003 1004 1005];
+    ballID = 998;
+    robotID = [1007 1002 1003 1004 1005];
 
     %% TOUCH OR NO TOUCH
     % Here we put touch detection and saving locs & times
-    for m = 1:5
+    %for m = 1:4
+    m = 1;
         table = makeBallTurtleTable(default_data, ballID, robotID(m));
         if(predict_touch(table))
             % a matrix where we save the locs & time if touch
@@ -50,7 +51,7 @@ while (true)
             touch_track(m,2) = data.RigidBodies(m+1).x;
             touch_track(m,3) = data.fTimestamp;
         end
-    end
+    %end
 
     % Ball position - for the ball_in session, save the data
     % CHANGE THIS TO WHAT JOSEPH GIVES
