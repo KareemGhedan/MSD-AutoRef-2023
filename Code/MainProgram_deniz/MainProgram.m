@@ -1,13 +1,13 @@
-% Dummy main program to show how ballie_track is implemented
-% It turned into main program
-% 11/03/2024
+% Main program where sub-systems are integrated
+% 18/03/2024
 % Deniz Akyazi
 
 clc
 clear
 addpath Functions\
-py.importlib.import_module('joblib');
-py.importlib.import_module('sklearn.ensemble');
+py.importlib.import_module('joblib')
+py.importlib.import_module('sklearn.ensemble')
+global game
 
 % Connect to OptiTrack
 nnc = setNNC('Unicast','192.168.6.51');
@@ -31,6 +31,7 @@ match_track = [];
 boop_details = [];
 touch_track = zeros(5,3);
 lt_team = 'None';
+gameStateController();
 
 while (true)
     i = i+1;
@@ -88,7 +89,7 @@ while (true)
 
     %% PROOF AND RESET
 
-    if (game_state_UI() == 'P')
+    if (~game.gameState)
 
         
         pause_count = pause_count+1;
@@ -125,7 +126,12 @@ while (true)
             waitfor(gcf)
         end
         
-        while(game_state_UI() ~= 'S')
+        while(~game.gameState)
+            
+            disp('Game paused')
+            clc
+            
+
         end
 
 
