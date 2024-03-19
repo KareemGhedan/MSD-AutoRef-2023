@@ -15,7 +15,7 @@ function data = nncPollAll(nnc)
     
     nBodies = model.RigidBodyCount;
     data = zeros(9,nBodies);
-    parfor i = 1:nBodies
+    for i = 1:nBodies
         [x,y,z,qx,qy,qz,qw,ts,id] = nncPolling(frame,i);
         data(:,i) = [x,y,z,qx,qy,qz,qw,ts,id]';
     end

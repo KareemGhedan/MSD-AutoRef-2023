@@ -5,7 +5,7 @@ function LastTouch_plot(t, last_touch_data, last_touch, ballID, robot1ID, robot2
     % Input last_touch_data = last data from nncPollAll when touch
     % Input last_touch = last 1-by-4 array from touch prediction
     % Input ballID = ball id from OptiTrack
-    % Input robot{n}ID = n robot id from OptiTrack
+    % Input robot{n}ID = {n} robot id from OptiTrack
 
     switch nargin
         case 5
@@ -21,7 +21,7 @@ function LastTouch_plot(t, last_touch_data, last_touch, ballID, robot1ID, robot2
 
     % Get ball pos
     [~, col] = find(last_touch_data == ballID);
-    ball_pos = last_touch_data(1:3,col(1));
+    ball_pos = last_touch_data(1:3,col);
     
     % Get robots pos and rearrange it to [Robot1 Robot2 Robot3 Robot4]
     robots_pos = [last_touch_data(1:3,:); last_touch_data(9,:)];
@@ -56,11 +56,11 @@ function LastTouch_plot(t, last_touch_data, last_touch, ballID, robot1ID, robot2
     
     % plot ball
     hold on
-    plot3(ball_pos(1),ball_pos(2),ball_pos(3),'om','LineWidth',2);
+    plot3(ball_pos(1),ball_pos(3),ball_pos(2),'om','LineWidth',2);
     
     % plot robots
     for i = 1:size(rplt,2)
-        plot3(rplt(1,i), rplt(2,i), rplt(3,i), 'diamond', 'LineWidth', 2)
+        plot3(rplt(1,i), rplt(3,i), rplt(2,i), 'diamond', 'LineWidth', 2)
         if rplt(4,i) == robot1ID
             names{i} = 'Robot 1';
         elseif rplt(4,i) == robot2ID
@@ -77,18 +77,18 @@ function LastTouch_plot(t, last_touch_data, last_touch, ballID, robot1ID, robot2
     idx = 0;
     for j = Tcol
         idx = idx + 1;
-        plot3([ball_pos(1) rplt(1,j)], [ball_pos(2) rplt(2,j)], [ball_pos(3) rplt(3,j)], 'LineWidth', 1)
+        plot3([ball_pos(1) rplt(1,j)], [ball_pos(3) rplt(3,j)], [ball_pos(2) rplt(2,j)], 'LineWidth', 1)
         names{idx+size(rplt,2)} = 'dist';
     end
     
     % set axes limits
     grid on
-    ylim([-7 7])
+    ylim([-5 5])
     xlim([-7 7])
     zlim([0 5])
     
     % set default view, and add title, labels, and legend
-    view(ax,45,15)
+    view(ax,45,60)
     title('Last Touch Proof')
     xlabel('[meter] at x-axis')
     ylabel('[meter] at z-axis')

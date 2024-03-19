@@ -20,8 +20,8 @@ function  ball_in = BOOP_Naive(ball_pos, field_corners, ball_radius)
     % Measurement errors/Data points
     cond1 = (ball_pos(1)-ball_radius) > field_corners(2,2);
     cond2 = (ball_pos(2)-ball_radius) > field_corners(1,2);
-    cond3 = (ball_pos(2)-ball_radius) > field_corners(1,1);
-    cond4 = (ball_pos(1)-ball_radius) > field_corners(2,1);
+    cond3 = (ball_pos(2)+ball_radius) < field_corners(1,1);
+    cond4 = (ball_pos(1)+ball_radius) < field_corners(2,1);
 
     if cond1 || cond2 || cond3 || cond4
         ball_in = false;
