@@ -28,18 +28,7 @@ function fig = soccerRefereeUI(teamName)
 
     % Function to display proof of decision (simple plot)
     function showProofCallback(~, ~)
-        % % Generate sample data for plot
-        % x = linspace(0, 10, 100);
-        % y = sin(x);
-        % 
-        % % Plot the data
-        % figure('Name', 'Proof of Decision', 'NumberTitle', 'off');
-        % plot(x, y);
-        % title('Proof of Decision');
-        % xlabel('X-axis');
-        % ylabel('Y-axis');
-        % grid on;
-        % 
+
         plot_fun();
         % Close the main UI window
         close(fig);
@@ -68,14 +57,5 @@ end
 
 function plot_fun(~,~)
 % Generate sample data for plot
-x = linspace(0, 10, 100);
-y = sin(x);
-
-% Plot the data
-figure('Name', 'Proof of Decision', 'NumberTitle', 'off');
-plot(x, y);
-title('Proof of Decision');
-xlabel('X-axis');
-ylabel('Y-axis');
-grid on;
+uiwait(openfig('Temp.fig','new','visible'))
 end

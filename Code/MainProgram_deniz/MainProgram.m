@@ -2,12 +2,12 @@
 % 18/03/2024
 % Deniz Akyazi
 
-clc
-clear
 addpath Functions\
-py.importlib.import_module('joblib')
-py.importlib.import_module('sklearn.ensemble')
-global game
+py.importlib.import_module('joblib');
+py.importlib.import_module('sklearn.ensemble');
+global game;
+gameStateController();
+
 
 % Connect to OptiTrack
 nnc = setNNC('Unicast','192.168.6.51');
@@ -21,7 +21,7 @@ robot_radius = 26e-2;
 % Parameters related to iteration
 dummy_count = 0; % count for multiple data points to be out of play
 out_flag = false;
-i = 0; % counting the iteration
+ i = 0; % counting the iteration
 ball_in = true;
 out = 1; % index for times ball was out
 pause_count = 0;
@@ -31,14 +31,14 @@ match_track = [];
 boop_details = [];
 touch_track = zeros(5,3);
 lt_team = 'None';
-gameStateController();
+
 
 while (true)
     i = i+1;
-    % Get the livestream data
+   % Get the livestream data
     default_data = nncPollAll(nnc);
     ballID = 998;
-    robotID = [1007 1002 1003 1004 1005];
+    robotID = [1007 1002 1003 1004];
 
     %% TOUCH OR NO TOUCH
     % Here we put touch detection and saving locs & times
@@ -48,18 +48,20 @@ while (true)
         if(predict_touch(table))
             % a matrix where we save the locs & time if touch
             % CHANGE THESE AS WELL TO WHAT JOSEPH GIVES
-            touch_track(m,1) = data.RigidBodies(m+1).z;
-            touch_track(m,2) = data.RigidBodies(m+1).x;
-            touch_track(m,3) = data.fTimestamp;
+            [~, rCol] = find(default_data == robotID(m));
+            touch_track(m,1) = default_data(1,rCol);
+            touch_track(m,2) = default_data(3,rCol);
+            touch_track(m,3) = default_data(8,rCol);
         end
     %end
 
     % Ball position - for the ball_in session, save the data
     % CHANGE THIS TO WHAT JOSEPH GIVES
-    ball_track(i,2) = data.RigidBodies(1).x;
-    ball_track(i,1) = data.RigidBodies(1).z;
+    [~, bCol] = find(default_data == ballID);
+    ball_track(i,2) = default_data(1, bCol);
+    ball_track(i,1) = default_data(3, bCol);
 
-    %% BALL OUT OF PLAY
+     BALL OUT OF PLAY
     if(i>1)
         [ball_in, margin, dummy_count] = BOOP(ball_track(i,1), ball_track(i,2),ball_track(i-1,1), ball_track(i-1,2),dummy_count);
     end
@@ -87,13 +89,14 @@ while (true)
 
     end
 
-    %% PROOF AND RESET
+    % PROOF AND RESET
 
     if (~game.gameState)
 
-        
+
         pause_count = pause_count+1;
-        
+        boop_details(pause_count) = ball_out_time;
+
         % Plots figure but doesn't display
         gfc = figure('Visible','off');
         plot(field_z,[field_x(1) field_x(1)],'k')
@@ -111,29 +114,19 @@ while (true)
         th = 0:pi/50:2*pi;
         xunit = robot_radius * cos(th) + last_touch(1,1);
         yunit = robot_radius * sin(th) + last_touch(1,2);
-        h = plot(xunit, yunit, 'LineWidth','3');
-
-        set(gcf, 'visible', 'on');
+        plot(xunit, yunit, 'LineWidth','3','Color',[0 0.45 0.74]);
+        %set(gcf, 'visible', 'on');
 
         % Saves the figure
         saveas(gcf,strcat('Match Data\',string(datetime("now")),'_output_decision_number_',int2str(pause_count),'.png'))
-        close(gcf);
-        boop_details(pause_count) = ball_out_time;
+        saveas(gcf, 'Temp', 'fig')
 
-        waitfor(soccerRefereeUI(lt_team),'Value');
-        if(soccerRefereeUI(lt_team) == 'P')
-            drawnow;
-            waitfor(gcf)
-        end
-        
-        while(~game.gameState)
-            
+        uiwait(soccerRefereeUI('Deniz'));
+
+        while(~game.gameState)  
             disp('Game paused')
             clc
-            
-
         end
-
 
         % reset the data for a fresh start
         close all
