@@ -200,7 +200,7 @@ e
 This project has been carried out by the Mechatronic Systems Design (MSD) 2023-25 at Eindhoven University of Technology (TU/e) for the 1st in-house project in Block II of the program. The team members are as follow:
 
 Quinten Swan - Design Engineer and Project manager (add email)<br />
-Kareem Ghedan - Design Engineer and Team Leader (add email)<br />
+Kareem Ghedan - Design Engineer and Team Leader (k.a.a.a.ghedan@tue.nl)<br />
 Joseph Tandio - Design Engineer and System Architect (add email)<br />
 Mahsa - Design Engineer and Scrum Master (add email)<br />
 Naheed - Design Engineer (add email)<br />
