@@ -62,13 +62,13 @@ function LastTouch_plot(t, last_touch_data, last_touch, ballID, robot1ID, robot2
     for i = 1:size(rplt,2)
         plot3(rplt(1,i), rplt(3,i), rplt(2,i), 'diamond', 'LineWidth', 2)
         if rplt(4,i) == robot1ID
-            names{i} = 'Robot 1';
-        elseif rplt(4,i) == robot2ID
             names{i} = 'Robot 2';
-        elseif rplt(4,i) == robot3ID
+        elseif rplt(4,i) == robot2ID
             names{i} = 'Robot 3';
-        elseif rplt(4,i) == robot4ID
+        elseif rplt(4,i) == robot3ID
             names{i} = 'Robot 4';
+        elseif rplt(4,i) == robot4ID
+            names{i} = 'Robot 5';
         end
     end
     

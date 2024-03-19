@@ -34,13 +34,15 @@ function fig = soccerRefereeUI(teamName, field_corners, ball_pos, ball_radius, l
         % Create figures and axes
         [f, t] = createProofFig();
 
+        title(t, string(datetime('now')))
+
         % Show proof for BOOP
         BOOP_plot(field_corners,ball_pos,ball_radius,t)
 
         % Show proof for Last Touch
         LastTouch_plot(t, last_touch_data, last_touch, ballID, robot1ID, robot2ID, robot3ID, robot4ID)
         % Close the main UI window
-        close(fig);
+        % close(fig);
     end
 
     % Function to handle the close button
