@@ -11,7 +11,8 @@ Reports -> PMP, System Architecture, Registers, Meetings,  Techincal report, Exe
 Codes -> 
 Verification and validation -> Verification, validation
 
-1. [About The Project] (#about-the-project)
+1. [About The Project](#about-the-project)
+1. [About The Project](#about-the-project)
 2. [How to get smooth start](#how-to-get-smooth-start)
 3. [Suggestion for improvement](#suggestion-for-improvement)
 4. [Team](#team)
