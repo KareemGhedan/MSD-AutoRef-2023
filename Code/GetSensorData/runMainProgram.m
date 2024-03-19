@@ -1,7 +1,8 @@
-function runMainProgram(gameState)
+function runMainProgram()
     persistent m_state
     m_state = 0;
-    while gameState
+
+    while true
         switch m_state
             % Initialization
             case 0
@@ -18,18 +19,19 @@ function runMainProgram(gameState)
                 py.importlib.import_module('joblib');
                 py.importlib.import_module('sklearn.ensemble');
         
-                % Create NatNet client and connect to server
-                nnc = setNNC('Unicast','192.168.6.232','192.168.5.101');
+                % Create NatNet client and connect to server [CHANGE 2ND ARGUMENT 
+                % TO YOUR IP ADDRESS]
+                nnc = setNNC('Unicast','192.168.6.219','192.168.5.101');
         
                 % Parameters
                 sample_freq = 100;
                 field_corners = [-4.08 4.08;-6.12 6.12];
                 ball_radius = 11e-2;
                 ballID = 998;
-                robot1ID = 1007;
-                robot2ID = 0;   % ADJUST
-                robot3ID = 0;   % ADJUST
-                robot4ID = 0;   % ADJUST
+                robot1ID = 1009;
+                robot2ID = 1008;   % ADJUST
+                robot3ID = 1006;   % ADJUST
+                robot4ID = 1007;   % ADJUST
     
                 % Change m_state to Set temporary data if no error in nnc connection
                 if nnc.IsConnected
@@ -43,9 +45,8 @@ function runMainProgram(gameState)
                 % Temporary data
                 prev_data = [];
                 last_touch_data = [];
-                % last_touch = zeros(1,4);  % CHANGE FOR 4 ROBOTS
-                last_touch = zeros(1,1);    % CHANGE FOR 4 ROBOTS
-                LT_TeamName = {};
+                last_touch = zeros(1,4);  % CHANGE FOR 4 ROBOTS
+                % last_touch = zeros(1,1);    % CHANGE FOR 4 ROBOTS
                 getDataT = 0.01;            % Make the first time to run immediately
                 decisionMakingT = 0.01;     % Make the first time to run immediately
     
@@ -89,9 +90,9 @@ function runMainProgram(gameState)
                     % ball and robots table for ML model
                     T_ball_turtle1 = makeBallTurtleTable(current_data, ballID, robot1ID);
                     % ADJUST
-                    % T_ball_turtle2 = makeBallTurtleTable(current_data, ballID, robot2ID); 
-                    % T_ball_turtle3 = makeBallTurtleTable(current_data, ballID, robot3ID);
-                    % T_ball_turtle4 = makeBallTurtleTable(current_data, ballID, robot4ID);
+                    T_ball_turtle2 = makeBallTurtleTable(current_data, ballID, robot2ID); 
+                    T_ball_turtle3 = makeBallTurtleTable(current_data, ballID, robot3ID);
+                    T_ball_turtle4 = makeBallTurtleTable(current_data, ballID, robot4ID);
         
                     % Change state to decision making, all data has been checked inside nncPollAll
                     m_state = 3;
@@ -113,14 +114,9 @@ function runMainProgram(gameState)
                 tic
     
                 % Run last touch function with output [0/1 0/1 0/1 0/1]
-                turtleTouch1 = predict_touch(T_ball_turtle1);
+                % current_last_touch = predict_touch(T_ball_turtle1);
                 % ADJUST
-                % turtleTouch2 = predict_touch(T_ball_turtle2);
-                % turtleTouch3 = predict_touch(T_ball_turtle3);
-                % turtleTouch4 = predict_touch(T_ball_turtle4);
-                % ADJUST
-                % current_last_touch = [turtleTouch1 turtleTouch2 turtleTouch3 turtleTouch4];
-                current_last_touch = turtleTouch1;
+                current_last_touch = multiple_prediction([T_ball_turtle1;T_ball_turtle2;T_ball_turtle3;T_ball_turtle4])';
                 
                 % Run BOOP function
                 ball_inside = BOOP_Naive(ball_pos, field_corners, ball_radius);
@@ -128,19 +124,20 @@ function runMainProgram(gameState)
                 % Show which robot touch the last if ball out of field
                 if ~ball_inside
                     disp("Ball out of field")
-    
+
+                    % ADJUST
+                    % LT_TeamName = 'Team A';
                     if any(last_touch(1:2) == 1) && any(last_touch(3:4) == 1)
-                        LT_TeamName{1} = 'Team A, ';
-                        LT_TeamName{2} = 'Team B';
+                        LT_TeamName = ['Team A, ', 'Team B'];
                     elseif any(last_touch(1:2) == 1)
-                        LT_TeamName{1} = 'Team A';
+                        LT_TeamName = 'Team A';
                     elseif any(last_touch(3:4) == 1)
-                        LT_TeamName{1} = 'Team B';
+                        LT_TeamName = 'Team B';
                     end
     
                     % Transfer decision to soccer UI
-                    soccerRefereeUI(teamName, field_corners, ball_pos, ball_radius, ...
-                        last_touch_data, last_touch, ballID, robot1ID, robot2ID, robot3ID, robot4ID);
+                    uiwait(soccerRefereeUI(LT_TeamName, field_corners, ball_pos, ball_radius, ...
+                        last_touch_data, last_touch, ballID, robot1ID, robot2ID, robot3ID, robot4ID));
     
                     % Change state back to Set temporary data
                     m_state = 1;

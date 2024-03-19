@@ -30,7 +30,7 @@ function fig = soccerRefereeUI(teamName, field_corners, ball_pos, ball_radius, l
     end
 
     % Function to display proof of decision (simple plot)
-    function showProofCallback(field_corners, ball_pos, ball_radius, last_touch_data, last_touch, ballID, robot1ID, robot2ID, robot3ID, robot4ID)
+    function showProofCallback(src, event, field_corners, ball_pos, ball_radius, last_touch_data, last_touch, ballID, robot1ID, robot2ID, robot3ID, robot4ID)
         % Create figures and axes
         [f, t] = createProofFig();
 
@@ -39,7 +39,6 @@ function fig = soccerRefereeUI(teamName, field_corners, ball_pos, ball_radius, l
 
         % Show proof for Last Touch
         LastTouch_plot(t, last_touch_data, last_touch, ballID, robot1ID, robot2ID, robot3ID, robot4ID)
-        
         % Close the main UI window
         close(fig);
     end
@@ -56,3 +55,14 @@ function fig = soccerRefereeUI(teamName, field_corners, ball_pos, ball_radius, l
         close(fig);
     end
 end
+
+% function plot_fun(field_corners, ball_pos, ball_radius, last_touch_data, last_touch, ballID, robot1ID, robot2ID, robot3ID, robot4ID)
+% % Create figures and axes
+% [f, t] = createProofFig();
+% 
+% % Show proof for BOOP
+% BOOP_plot(field_corners,ball_pos,ball_radius,t)
+% 
+% % Show proof for Last Touch
+% LastTouch_plot(t, last_touch_data, last_touch, ballID, robot1ID, robot2ID, robot3ID, robot4ID)
+% end
