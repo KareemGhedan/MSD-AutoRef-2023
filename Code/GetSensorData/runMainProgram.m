@@ -8,9 +8,6 @@ function runMainProgram()
             case 0
                 % add path for the helper functions
                 addpath("helper_functions\")
-    
-                % initialize parallel pool for parallel processing
-                % parpool
                 
                 % create cleanup object when ctrl+c is called
                 cleanupObj = onCleanup(@cleanMainUp);
@@ -25,7 +22,7 @@ function runMainProgram()
         
                 % Parameters
                 sample_freq = 100;
-                field_corners = [-4.08 4.08;-6.12 6.12];
+                field_corners = [-4.0875 4.1225;-6.12 6.113];
                 ball_radius = 11e-2;
                 ballID = 998;
                 robot1ID = 1009;
@@ -120,6 +117,7 @@ function runMainProgram()
                 
                 % Run BOOP function
                 ball_inside = BOOP_Naive(ball_pos, field_corners, ball_radius);
+                
     
                 % Show which robot touch the last if ball out of field
                 if ~ball_inside
