@@ -2,8 +2,8 @@
 <!--
 README to be edited according to the need.
 -->
-# AutoRef-Project-MSD-2023-25
-MSD_2023 Autonomous Referee Project 
+# AutoRef-Project-MSD2023
+<!--MSD_2023 Autonomous Referee Project-->
 
 
 
@@ -24,17 +24,28 @@ MSD_2023 Autonomous Referee Project
 
 - Ask for permission for using the surveillance cameras at the Robotics Lab.
   You may contact Ömür Arslan (o.arslan@tue.nl) to ask for the permission.
-- Get in touch with MSD2022.
+- Get in touch with MSD2023-25.
 - Get in touch with Matthias Briegel<br />
   Matthias is the person who has previously worked on developing AutoRef system and he may share some interesting ideas for the development of the AutoRef system. (matthias_briegel@hotmail.com)
    
   <!-- Suggestion for improvement-->
 ## Suggestion for improvement
 
+a
+d
+d
 
+T
+h
+i
+n
+g
+s
 
-
-
+h
+e
+r
+e
 
 
 
