@@ -5,10 +5,155 @@ README to be edited according to the need.
 # AutoRef-Project-MSD2023
 <!--MSD_2023 Autonomous Referee Project-->
 
+## Table of Content
+
+Reports -> PMP, System Architecture, Registers, Meetings,  Techincal report, Executive summary, Final Presentation, Gantt Chart, feasibility study, LinkedInPost
+Codes -> 
+Verification and validation -> Verification, validation
+
+
+1. [How to get smooth start](#how-to-get-smooth-start)
+2. [Suggestion for improvement](#suggestion-for-improvement)
+3. [Team](#team)
+4. [Reference](#Reference)
 
 
 
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
+a
+d
+d
+
+T
+h
+i
+n
+g
+s
+
+h
+e
+r
+e
+
+
+<!-- System Architecture -->
+## System Architecture
+
+a
+d
+d
+
+T
+h
+i
+n
+g
+s
+
+h
+e
+r
+e
+
+<!-- Scope of the project -->
+## Scope of the project 
+
+a
+d
+d
+
+T
+h
+i
+n
+g
+s
+
+h
+e
+r
+e
+
+
+<!-- Feasibility Analysis -->
+## Feasibility Studies
+
+a
+d
+d
+
+T
+h
+i
+n
+g
+s
+
+h
+e
+r
+e
+
+<!-- Method and procedure -->
+## Method and procedure
+
+a
+d
+d
+
+T
+h
+i
+n
+g
+s
+
+h
+e
+r
+e
+
+
+<!-- Implementation and Validation -->
+## Implementation and Validation
+
+a
+d
+d
+
+T
+h
+i
+n
+g
+s
+
+h
+e
+r
+e
+
+<!-- Summary of files -->
+## Summary of files
+
+a
+d
+d
+
+T
+h
+i
+n
+g
+s
+
+h
+e
+r
+e
  <!-- How to get smooth start -->
 ## How to get smooth start
 
