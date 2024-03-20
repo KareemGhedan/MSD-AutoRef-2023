@@ -9,13 +9,13 @@ README to be edited according to the need.
 
 Reports -> PMP, System Architecture, Registers, Meetings,  Techincal report, Executive summary, Final Presentation, Gantt Chart, feasibility study, LinkedInPost
 Codes -> 
-Verification and validation -> Verification, validation
 
 1. [About The Project](#about-the-project)
-1. [About The Project](#about-the-project)
+2. 
 2. [How to get smooth start](#how-to-get-smooth-start)
 3. [Suggestion for improvement](#suggestion-for-improvement)
 4. [Team](#team)
+5. [Contents of the Folders](#contents-of-the-folders)
 5. [Reference](#Reference)
 
 
@@ -208,6 +208,11 @@ Naheed - Design Engineer (add email)<br />
 Arjun Chauhan - Design Engineer (add email)<br />
 Deniz Akyasi - Design Engineer (add email)<br />
 Anshid Nuhman Pillat - Design Engineer (a.n.pillat@tue.nl)<br />
+
+<!-- Folder Contents -->
+## Contents of the Folders
+
+The documents are housed in two distinct folders. Within the "Code Base" folder, you'll find the executed code alongside supplementary materials. Meanwhile, the "Reports" folder encompasses all project-related reports and activities, excluding the code itself.
 
 <!-- Reference -->
 ## Reference
