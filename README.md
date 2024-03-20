@@ -5,18 +5,28 @@ README to be edited according to the need.
 # AutoRef-Project-MSD2023
 <!--MSD_2023 Autonomous Referee Project-->
 
+Folders are rearranged.
+Code Base folder has all the Codes
+Report folder has everything else
+
+
+
 ## Table of Content
 
 Reports -> PMP, System Architecture, Registers, Meetings,  Techincal report, Executive summary, Final Presentation, Gantt Chart, feasibility study, LinkedInPost
 Codes -> 
 
 1. [About The Project](#about-the-project)
-2. 
-2. [How to get smooth start](#how-to-get-smooth-start)
-3. [Suggestion for improvement](#suggestion-for-improvement)
-4. [Team](#team)
-5. [Contents of the Folders](#contents-of-the-folders)
-5. [Reference](#Reference)
+2. [System Architecture](#system-architecture)
+3. [Scope of the Project](#scope-of-the-project)
+4. [Feasibility Studies](#feasibility-studies)
+5. [Method and Procedure](#method-and-procedure)
+6. [Implementation and Validation](#implementation-and-validation)
+7. [How to get smooth start](#how-to-get-smooth-start)
+8. [Suggestion for improvement](#suggestion-for-improvement)
+9. [Team](#team)
+10. [Contents of the Folders](#contents-of-the-folders)
+11. [Reference](#Reference)
 
 
 
@@ -60,7 +70,7 @@ r
 e
 
 <!-- Scope of the project -->
-## Scope of the project 
+## Scope of the Project 
 
 a
 d
@@ -99,7 +109,7 @@ r
 e
 
 <!-- Method and procedure -->
-## Method and procedure
+## Method and Procedure
 
 a
 d
@@ -137,24 +147,6 @@ e
 r
 e
 
-<!-- Summary of files -->
-## Summary of files
-
-a
-d
-d
-
-T
-h
-i
-n
-g
-s
-
-h
-e
-r
-e
  <!-- How to get smooth start -->
 ## How to get smooth start
 
@@ -214,6 +206,8 @@ Anshid Nuhman Pillat - Design Engineer (a.n.pillat@tue.nl)<br />
 
 The documents are housed in two distinct folders. Within the "Code Base" folder, you'll find the executed code alongside supplementary materials. Meanwhile, the "Reports" folder encompasses all project-related reports and activities, excluding the code itself.
 
+
+Also conatcings a small description about what each folder has.........
 
 <!-- Reference -->
 ## Reference
