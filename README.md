@@ -196,7 +196,7 @@ Quinten Swan - Design Engineer and Project manager (add email)<br />
 Kareem Ghedan - Design Engineer and Team Leader (k.a.a.a.ghedan@tue.nl)<br />
 Joseph Tandio - Design Engineer and System Architect (add email)<br />
 Mahsa - Design Engineer and Scrum Master (add email)<br />
-Naheed - Design Engineer (n.tabassum94@gmail.com)<br />
+Naheed - Design Engineer (n.tabassum@tue.nl)<br />
 Arjun Chauhan - Design Engineer (add email)<br />
 Deniz Akyasi - Design Engineer (add email)<br />
 Anshid Nuhman Pillat - Design Engineer (a.n.pillat@tue.nl)<br />
