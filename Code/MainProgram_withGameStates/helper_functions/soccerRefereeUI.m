@@ -1,4 +1,4 @@
-function fig = soccerRefereeUI(teamName)
+function fig = soccerRefereeUI(teamName, field_corners, ball_pos, ball_radius, last_touch_data, last_touch, ballID, robot1ID, robot2ID, robot3ID, robot4ID)
     % Create a figure window
     fig = figure('Name', 'Robo Soccer Assistant Referee', 'NumberTitle', 'off', ...
                  'Position', [200, 200, 500, 300], 'MenuBar', 'none', ...
@@ -14,12 +14,15 @@ function fig = soccerRefereeUI(teamName)
     % Add button to display proof of decision
     btnProof = uicontrol('Style', 'pushbutton', 'String', 'Show Proof of Decision', ...
                          'Position', [50, 100, 200, 50], ...
-                         'Callback', @showProofCallback);
+                         'Callback', {@showProofCallback, field_corners, ball_pos, ball_radius, last_touch_data, last_touch, ballID, robot1ID, robot2ID, robot3ID, robot4ID});
 
     % Add button to close the window
     btnClose = uicontrol('Style', 'pushbutton', 'String', 'Close', ...
                          'Position', [300, 100, 150, 50], ...
                          'Callback', @closeCallback);
+
+    % Call the updateLastTouch function with the initial team name
+    updateLastTouch(teamName);
 
     % Function to update UI with the last touch information
     function updateLastTouch(teamName)
@@ -27,22 +30,19 @@ function fig = soccerRefereeUI(teamName)
     end
 
     % Function to display proof of decision (simple plot)
-    function showProofCallback(~, ~)
-        % % Generate sample data for plot
-        % x = linspace(0, 10, 100);
-        % y = sin(x);
-        % 
-        % % Plot the data
-        % figure('Name', 'Proof of Decision', 'NumberTitle', 'off');
-        % plot(x, y);
-        % title('Proof of Decision');
-        % xlabel('X-axis');
-        % ylabel('Y-axis');
-        % grid on;
-        % 
-        plot_fun();
+    function showProofCallback(src, event, field_corners, ball_pos, ball_radius, last_touch_data, last_touch, ballID, robot1ID, robot2ID, robot3ID, robot4ID)
+        % Create figures and axes
+        [f, t] = createProofFig();
+
+        title(t, string(datetime('now')))
+
+        % Show proof for BOOP
+        BOOP_plot(field_corners,ball_pos,ball_radius,t)
+
+        % Show proof for Last Touch
+        LastTouch_plot(t, last_touch_data, last_touch, ballID, robot1ID, robot2ID, robot3ID, robot4ID)
         % Close the main UI window
-        close(fig);
+        % close(fig);
     end
 
     % Function to handle the close button
@@ -54,28 +54,17 @@ function fig = soccerRefereeUI(teamName)
     % Function to handle the close request of the main UI window
     function closeRequestFcn(~, ~)
         % Close the figure
-        closereq;
+        close(fig);
     end
-
-
-    % Call the updateLastTouch function with the initial team name
-    updateLastTouch(teamName);
 end
 
-
-
-
-
-function plot_fun(~,~)
-% Generate sample data for plot
-x = linspace(0, 10, 100);
-y = sin(x);
-
-% Plot the data
-figure('Name', 'Proof of Decision', 'NumberTitle', 'off');
-plot(x, y);
-title('Proof of Decision');
-xlabel('X-axis');
-ylabel('Y-axis');
-grid on;
-end
+% function plot_fun(field_corners, ball_pos, ball_radius, last_touch_data, last_touch, ballID, robot1ID, robot2ID, robot3ID, robot4ID)
+% % Create figures and axes
+% [f, t] = createProofFig();
+% 
+% % Show proof for BOOP
+% BOOP_plot(field_corners,ball_pos,ball_radius,t)
+% 
+% % Show proof for Last Touch
+% LastTouch_plot(t, last_touch_data, last_touch, ballID, robot1ID, robot2ID, robot3ID, robot4ID)
+% end
