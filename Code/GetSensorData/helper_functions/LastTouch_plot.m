@@ -46,7 +46,7 @@ function LastTouch_plot(t, last_touch_data, last_touch, ballID, robot1ID, robot2
             [~, Rcol4] = find(robots_pos == robot4ID);
             data = [robots_pos(:,Rcol1) robots_pos(:,Rcol2) robots_pos(:,Rcol3) robots_pos(:,Rcol4)];
     end
-    rplt = [data; last_touch];
+    rplt = [data; double(last_touch)];
     
     % Create names of robots and dist
     names = cell(1,size(rplt,2)+sum(last_touch == 1));

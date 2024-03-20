@@ -18,7 +18,7 @@ function runMainProgram()
         
                 % Create NatNet client and connect to server [CHANGE 2ND ARGUMENT 
                 % TO YOUR IP ADDRESS]
-                nnc = setNNC('Unicast','192.168.6.219','192.168.5.101');
+                nnc = setNNC('Unicast','192.168.6.232','192.168.5.101');
         
                 % Parameters
                 sample_freq = 100;
