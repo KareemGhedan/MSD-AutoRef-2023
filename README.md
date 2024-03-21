@@ -17,8 +17,8 @@ Reports -> PMP, System Architecture, Registers, Meetings,  Techincal report, Exe
 Codes -> 
 
 1. [About The Project](#about-the-project)
-2. [System Architecture](#system-architecture)
-3. [Scope of the Project](#scope-of-the-project)
+2. [Scope of the Project](#scope-of-the-project)
+3. [System Architecture](#system-architecture)
 4. [Feasibility Studies](#feasibility-studies)
 5. [Method and Procedure](#method-and-procedure)
 6. [Implementation and Validation](#implementation-and-validation)
@@ -33,41 +33,14 @@ Codes ->
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-a
-d
-d
+<!--The Autonomous Referee Project started with MSD-2015 with aim of autonomously refereeing a robot soccer match. The Assistant Referee System we developed will be assisting the referee informing which team touched the ball the last time before the ball went out of play. The project will be assisting the referees in officiating the Robocup Middle Size League (MSL) using real-time object tracking technologies and machine learning methodologies. 
+-->
+The Autonomous Referee Project, initiated during MSD-2015, was conceived with the ambitious goal of autonomously officiating robot soccer matches. Our primary objective was to develop an Assistant Referee System designed to support human referees by providing crucial information regarding which team last made contact with the ball before it exited the field of play.
 
-T
-h
-i
-n
-g
-s
+This system represents a significant advancement in the field of robotics and sports technology. By harnessing real-time object tracking technologies and leveraging sophisticated machine learning methodologies, our project aimed to bridge the gap between traditional human-led officiating and cutting-edge automation.
 
-h
-e
-r
-e
+Specifically tailored for deployment in the Robocup Middle Size League (MSL), our project sought to revolutionize the way matches are officiated within this competitive arena. Through the seamless integration of state-of-the-art technologies, we envisioned a future where referees are empowered with enhanced decision-making capabilities, ensuring fair play and accurate adjudication in every match.
 
-
-<!-- System Architecture -->
-## System Architecture
-
-a
-d
-d
-
-T
-h
-i
-n
-g
-s
-
-h
-e
-r
-e
 
 <!-- Scope of the project -->
 ## Scope of the Project 
@@ -88,6 +61,26 @@ e
 r
 e
 
+
+
+<!-- System Architecture -->
+## System Architecture
+
+a
+d
+d
+
+T
+h
+i
+n
+g
+s
+
+h
+e
+r
+e
 
 <!-- Feasibility Analysis -->
 ## Feasibility Studies
