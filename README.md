@@ -179,7 +179,7 @@ This project has been carried out by the Mechatronic Systems Design (MSD) 2023-2
 Quinten Swan - Design Engineer and Project manager (add email)<br />
 Kareem Ghedan - Design Engineer and Team Leader (k.a.a.a.ghedan@tue.nl)<br />
 Joseph Tandio - Design Engineer and System Architect (add email)<br />
-Mahsa - Design Engineer and Scrum Master (add email)<br />
+Mahsa Barghi Mehmandari - Design Engineer and Scrum Master (m.barghi.mehmandari@tue.nl)<br />
 Naheed - Design Engineer (n.tabassum@tue.nl)<br />
 Arjun Chauhan - Design Engineer (add email)<br />
 Deniz Akyasi - Design Engineer (add email)<br />
