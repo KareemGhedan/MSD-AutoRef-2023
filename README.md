@@ -14,19 +14,20 @@ Report folder has everything else
 ## Table of Content
 
 Reports -> PMP, System Architecture, Registers, Meetings,  Techincal report, Executive summary, Final Presentation, Gantt Chart, feasibility study, LinkedInPost
+
 Codes -> 
 
 1. [About The Project](#about-the-project)
-2. [Scope of the Project](#scope-of-the-project)
-3. [System Architecture](#system-architecture)
-4. [Feasibility Studies](#feasibility-studies)
-5. [Method and Procedure](#method-and-procedure)
-6. [Implementation and Validation](#implementation-and-validation)
-7. [How to get smooth start](#how-to-get-smooth-start)
-8. [Suggestion for improvement](#suggestion-for-improvement)
-9. [Team](#team)
-10. [Contents of the Folders](#contents-of-the-folders)
-11. [Reference](#Reference)
+<!--2. [Scope of the Project](#scope-of-the-project)-->
+2. [System Architecture](#system-architecture)
+<!--4. [Feasibility Studies](#feasibility-studies)-->
+3. [Method and Procedure](#method-and-procedure)
+4. [Implementation and Validation](#implementation-and-validation)
+5. [How to get smooth start](#how-to-get-smooth-start)
+6. [Suggestion for improvement](#suggestion-for-improvement)
+7. [Team](#team)
+8. [Contents of the Folders](#contents-of-the-folders)
+9. [Reference](#Reference)
 
 
 
@@ -42,7 +43,7 @@ This system represents a significant advancement in the field of robotics and sp
 Specifically tailored for deployment in the Robocup Middle Size League (MSL), our project sought to revolutionize the way matches are officiated within this competitive arena. Through the seamless integration of state-of-the-art technologies, we envisioned a future where referees are empowered with enhanced decision-making capabilities, ensuring fair play and accurate adjudication in every match.
 
 
-<!-- Scope of the project -->
+<!-- Scope of the project 
 ## Scope of the Project 
 
 a
@@ -61,28 +62,14 @@ e
 r
 e
 
-
+-->
 
 <!-- System Architecture -->
 ## System Architecture
 
-a
-d
-d
+The system architecture is developed using the ideas of systems thinking. The document is in the folder "System Architecture" in "Reports". The document aims to offer a thorough insight into the design of the system, enabling stakeholders to grasp the system’s functionality, needs and requirements and system context diagram. Starting from the stakeholder’s needs and translating those to requirements and specifications, the document outlines how the project proceeds to solution domain.
 
-T
-h
-i
-n
-g
-s
-
-h
-e
-r
-e
-
-<!-- Feasibility Analysis -->
+<!-- Feasibility Analysis 
 ## Feasibility Studies
 
 a
@@ -100,10 +87,14 @@ h
 e
 r
 e
-
+-->
 <!-- Method and procedure -->
 ## Method and Procedure
+Utilizing OptiTrack technology for ball and robot tracking, our collision detection system   employs three distinctive methodologies: 
 
+- The cameras are used to acquire the position of the ball center and robot position. The data was then filtered to remove noise.  
+
+- A robust machine learning approach is embraced, employing an ensemble of 80 estimators within a random forest classifier. This model utilizes features including vectorized distances between robots and the ball, along with the Euclidean distance. This machine learning method is favored for its resilience and ability to handle intricate interactions. 
 a
 d
 d
