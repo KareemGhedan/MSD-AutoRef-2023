@@ -119,6 +119,7 @@ The system undergoes validation through a series of two vs. two robot soccer mat
 - Extend the algorithm to determine whether the ball out of play is corner kick, throw-ins and goal kick
 - Enhance the machine learning model by incorporating additional parameters such as the orientations of both the ball and the robot. Additionally, explore alternative machine learning techniques through experimentation.
 <br />
+
 <!-- Team -->
 ## Team
 
