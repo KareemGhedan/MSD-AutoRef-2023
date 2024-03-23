@@ -27,9 +27,9 @@ README to be edited according to the need.
 <!--The Autonomous Referee Project started with MSD-2015 with aim of autonomously refereeing a robot soccer match. The Assistant Referee System we developed will be assisting the referee informing which team touched the ball the last time before the ball went out of play. The project will be assisting the referees in officiating the Robocup Middle Size League (MSL) using real-time object tracking technologies and machine learning methodologies. 
 -->
 The Autonomous Referee Project, initiated during MSD-2015, was conceived with the ambitious goal of autonomously officiating robot soccer matches. Our primary objective was to develop an Assistant Referee System designed to support human referees by providing crucial information regarding which team last made contact with the ball before it exited the field of play.
-<br />
+
 This system represents a significant advancement in the field of robotics and sports technology. By harnessing real-time object tracking technologies and leveraging sophisticated machine learning methodologies, our project aimed to bridge the gap between traditional human-led officiating and cutting-edge automation.
-<br />
+
 Specifically tailored for deployment in the Robocup Middle Size League (MSL), our project sought to revolutionize the way matches are officiated within this competitive arena. Through the seamless integration of state-of-the-art technologies, we envisioned a future where referees are empowered with enhanced decision-making capabilities, ensuring fair play and accurate adjudication in every match.
 
 
