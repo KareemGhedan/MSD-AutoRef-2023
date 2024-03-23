@@ -133,7 +133,7 @@ Joseph W. Tandio - Design Engineer and System Architect (j.w.tandio@tue.nl)<br /
 Mahsa Barghi Mehmandari - Design Engineer and Scrum Master (m.barghi.mehmandari@tue.nl)<br />
 Naheed Tabassum - Design Engineer (n.tabassum@tue.nl)<br />
 Arjun Chauhan - Design Engineer (a.s.chauhan@tue.nl)<br />
-Deniz Akyasi - Design Engineer (d.akyazi@tue.nl)<br />
+Deniz Akyazi - Design Engineer (d.akyazi@tue.nl)<br />
 Anshid Nuhman Pillat - Design Engineer (a.n.pillat@tue.nl)<br />
 
 <!-- Folder Contents -->
