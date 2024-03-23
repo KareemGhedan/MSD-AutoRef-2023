@@ -129,11 +129,11 @@ This project has been carried out by the Mechatronic Systems Design (MSD) 2023-2
 
 Quinten Swan - Design Engineer and Project manager (q.swaan@tue.nl)<br />
 Kareem Ghedan - Design Engineer and Team Leader (k.a.a.a.ghedan@tue.nl)<br />
-Joseph Tandio - Design Engineer and System Architect (add email)<br />
+Joseph W. Tandio - Design Engineer and System Architect (j.w.tandio@tue.nl)<br />
 Mahsa Barghi Mehmandari - Design Engineer and Scrum Master (m.barghi.mehmandari@tue.nl)<br />
 Naheed - Design Engineer (n.tabassum@tue.nl)<br />
-Arjun Chauhan - Design Engineer (add email)<br />
-Deniz Akyasi - Design Engineer (add email)<br />
+Arjun Chauhan - Design Engineer (a.s.chauhan@tue.nl)<br />
+Deniz Akyasi - Design Engineer (d.akyazi@tue.nl)<br />
 Anshid Nuhman Pillat - Design Engineer (a.n.pillat@tue.nl)<br />
 
 <!-- Folder Contents -->
