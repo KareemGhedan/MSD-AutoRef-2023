@@ -107,8 +107,8 @@ The system undergoes validation through a series of two vs. two robot soccer mat
   René van de Molengraft - Project Sponsor and Technical Consultant (M.J.G.v.d.Molengraft@tue.nl)<br />
   Ruben Beumer (r.m.beumer@tue.nl) <br />
 - Ask for permission for using the surveillance cameras at the Robotics Lab.
-  You may contact Ömür Arslan (o.arslan@tue.nl) to ask for the permission.
-- Get in touch with MSD2023-25.
+  You may contact Ruben or Aykut Işleyen (a.isleyen@tue.nl) to ask for the permission.
+- Get in touch with MSD2023-2025.
 - Get in touch with Matthias Briegel<br />
   Matthias is the person who has previously worked on developing AutoRef system and he may share some interesting ideas for the development of the AutoRef system. (matthias_briegel@hotmail.com)
 <br />
