@@ -127,7 +127,7 @@ The system undergoes validation through a series of two vs. two robot soccer mat
 
 This project has been carried out by the Mechatronic Systems Design (MSD) 2023-25 at Eindhoven University of Technology (TU/e) for the 1st in-house project in Block II of the program. The team members are as follow:
 
-Quinten Swan - Design Engineer and Project manager (q.swaan@tue.nl)<br />
+Quinten Swaan - Design Engineer and Project manager (q.swaan@tue.nl)<br />
 Kareem Ghedan - Design Engineer and Team Leader (k.a.a.a.ghedan@tue.nl)<br />
 Joseph W. Tandio - Design Engineer and System Architect (j.w.tandio@tue.nl)<br />
 Mahsa Barghi Mehmandari - Design Engineer and Scrum Master (m.barghi.mehmandari@tue.nl)<br />
