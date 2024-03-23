@@ -2,34 +2,22 @@
 <!--
 README to be edited according to the need.
 -->
-# AutoRef-Project-MSD2023
+## Assistant Referee System - MSD2023
 <!--MSD_2023 Autonomous Referee Project-->
-
-Folders are rearranged.
-Code Base folder has all the Codes
-Report folder has everything else
-
-
 
 ## Table of Content
 
-Reports -> PMP, System Architecture, Registers, Meetings,  Techincal report, Executive summary, Final Presentation, Gantt Chart, feasibility study, LinkedInPost
-
-Codes -> 
-
 1. [About The Project](#about-the-project)
-<!--2. [Scope of the Project](#scope-of-the-project)-->
 2. [System Architecture](#system-architecture)
-<!--4. [Feasibility Studies](#feasibility-studies)-->
 3. [Method and Procedure](#method-and-procedure)
 4. [Implementation and Validation](#implementation-and-validation)
 5. [How to get smooth start](#how-to-get-smooth-start)
-6. [Suggestion for improvement](#suggestion-for-improvement)
-7. [Team](#team)
-8. [Contents of the Folders](#contents-of-the-folders)
-9. [Reference](#Reference)
-
-
+6. [Team](#team)
+7. [Contents of the Folders](#contents-of-the-folders)
+8. [Reference](#Reference)
+<!--2. [Scope of the Project](#scope-of-the-project)
+4. [Feasibility Studies](#feasibility-studies)
+6. [Suggestion for improvement](#suggestion-for-improvement)-->
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -90,46 +78,18 @@ e
 -->
 <!-- Method and procedure -->
 ## Method and Procedure
-Utilizing OptiTrack technology for ball and robot tracking, our collision detection system   employs three distinctive methodologies: 
+Utilizing OptiTrack technology for ball and robot tracking, our collision detection system employs three distinctive methodologies: 
 
 - The cameras are used to acquire the position of the ball center and robot position. The data was then filtered to remove noise.  
 
 - A robust machine learning approach is embraced, employing an ensemble of 80 estimators within a random forest classifier. This model utilizes features including vectorized distances between robots and the ball, along with the Euclidean distance. This machine learning method is favored for its resilience and ability to handle intricate interactions. 
-a
-d
-d
-
-T
-h
-i
-n
-g
-s
-
-h
-e
-r
-e
 
 
 <!-- Implementation and Validation -->
 ## Implementation and Validation
+The OptiTrack data provides the positions of both robots and the ball relative to the world coordinate system. To determine if the ball is out of play, the system compares its location and considers its radius relative to the field boundaries. For identifying the last touch, a random forest binary classifier utilizes ball and robot positions, transformed into X, Y, and Z distances, along with the Euclidean distance between them. Once the ball is out, the system tracks which team touched it last, updating a corresponding variable upon each touch. An intuitive User Interface communicates this decision to the referee, with an additional button offering proof of the decision. To optimize system performance during gameplay pauses, the program halts while the UI is active and resumes upon closure, alleviating computational load.
 
-a
-d
-d
-
-T
-h
-i
-n
-g
-s
-
-h
-e
-r
-e
+The system undergoes validation through a series of two vs. two robot soccer matches held at the Techunited arena at TU/e. These matches are overseen by human referees, and both the decisions made by the referees and the system's determinations are meticulously recorded. Utilizing footage from multiple CCTV cameras, the matches are reviewed in collaboration with referees to establish ground truth, enabling a thorough assessment of the system's performance in comparison to human referees.
 
  <!-- How to get smooth start -->
 ## How to get smooth start
@@ -150,27 +110,12 @@ e
 - Get in touch with Matthias Briegel<br />
   Matthias is the person who has previously worked on developing AutoRef system and he may share some interesting ideas for the development of the AutoRef system. (matthias_briegel@hotmail.com)
    
-  <!-- Suggestion for improvement-->
+  <!-- Suggestion for improvement
 ## Suggestion for improvement
 
-a
-d
-d
+- Currently, the OptiTrack is covering the half area of the field. 
 
-T
-h
-i
-n
-g
-s
-
-h
-e
-r
-e
-
-
-
+-->
 <!-- Team -->
 ## Team
 
@@ -188,10 +133,8 @@ Anshid Nuhman Pillat - Design Engineer (a.n.pillat@tue.nl)<br />
 <!-- Folder Contents -->
 ## Contents of the Folders
 
-The documents are housed in two distinct folders. Within the "Code Base" folder, you'll find the executed code alongside supplementary materials. Meanwhile, the "Reports" folder encompasses all project-related reports and activities, excluding the code itself.
+The documents are housed in two distinct folders. Within the "Code Base" folder, you will find the executed code alongside supplementary materials. Meanwhile, the "Reports" folder encompasses all project-related reports and activities, excluding the code itself.
 
-
-Also conatcings a small description about what each folder has.........
 
 <!-- Reference -->
 ## Reference
