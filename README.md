@@ -104,7 +104,7 @@ The system undergoes validation through a series of two vs. two robot soccer mat
   Some of the people that you can get in touch with:<br />
   Tech United Website: https://www.techunited.nl/en/<br />
   Tech United (Techunited@tue.nl)<br />
-  René van de Molengraft - Project Sponsor and Technical Consultant (M.J.G.v.d.Molengraft@tue.nl)<br />
+  René van de Molengraft (M.J.G.v.d.Molengraft@tue.nl) - Project Sponsor and Technical Consultant <br />
   Ruben Beumer (r.m.beumer@tue.nl) <br />
   Sander Doodeman (s.doodeman@student.tue.nl) - Ball tracking for OptiTrack <br />
 - Ask for permission for using the surveillance cameras at the Robotics Lab.
@@ -128,7 +128,7 @@ The system undergoes validation through a series of two vs. two robot soccer mat
 
 This project has been carried out by the Mechatronic Systems Design (MSD) 2023-25 at Eindhoven University of Technology (TU/e) for the 1st in-house project in Block II of the program. The team members are as follow:
 
-Quinten Swaan - Design Engineer and Project manager (q.swaan@tue.nl)<br />
+Quinten Swaan - Design Engineer and Project Manager (q.swaan@tue.nl)<br />
 Kareem Ghedan - Design Engineer and Team Leader (k.a.a.a.ghedan@tue.nl)<br />
 Joseph W. Tandio - Design Engineer and System Architect (j.w.tandio@tue.nl)<br />
 Mahsa Barghi Mehmandari - Design Engineer and Scrum Master (m.barghi.mehmandari@tue.nl)<br />
