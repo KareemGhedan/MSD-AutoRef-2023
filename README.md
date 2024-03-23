@@ -2,7 +2,8 @@
 <!--
 README to be edited according to the need.
 -->
-<!--Assistant Referee System - MSD2023-->
+
+
 ## Assistant Referee System - MSD2023
 <!--MSD_2023 Autonomous Referee Project-->
 
@@ -13,12 +14,12 @@ README to be edited according to the need.
 3. [Method and Procedure](#method-and-procedure)
 4. [Implementation and Validation](#implementation-and-validation)
 5. [How to get smooth start](#how-to-get-smooth-start)
-6. [Team](#team)
-7. [Contents of the Folders](#contents-of-the-folders)
-8. [Reference](#Reference)
+6. [Suggestion for improvement](#suggestion-for-improvement)
+7. [Team](#team)
+8. [Contents of the Folders](#contents-of-the-folders)
+9. [Reference](#Reference)
 <!--2. [Scope of the Project](#scope-of-the-project)
-4. [Feasibility Studies](#feasibility-studies)
-6. [Suggestion for improvement](#suggestion-for-improvement)-->
+4. [Feasibility Studies](#feasibility-studies)-->
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -26,9 +27,9 @@ README to be edited according to the need.
 <!--The Autonomous Referee Project started with MSD-2015 with aim of autonomously refereeing a robot soccer match. The Assistant Referee System we developed will be assisting the referee informing which team touched the ball the last time before the ball went out of play. The project will be assisting the referees in officiating the Robocup Middle Size League (MSL) using real-time object tracking technologies and machine learning methodologies. 
 -->
 The Autonomous Referee Project, initiated during MSD-2015, was conceived with the ambitious goal of autonomously officiating robot soccer matches. Our primary objective was to develop an Assistant Referee System designed to support human referees by providing crucial information regarding which team last made contact with the ball before it exited the field of play.
-
+<br />
 This system represents a significant advancement in the field of robotics and sports technology. By harnessing real-time object tracking technologies and leveraging sophisticated machine learning methodologies, our project aimed to bridge the gap between traditional human-led officiating and cutting-edge automation.
-
+<br />
 Specifically tailored for deployment in the Robocup Middle Size League (MSL), our project sought to revolutionize the way matches are officiated within this competitive arena. Through the seamless integration of state-of-the-art technologies, we envisioned a future where referees are empowered with enhanced decision-making capabilities, ensuring fair play and accurate adjudication in every match.
 
 
@@ -103,23 +104,21 @@ The system undergoes validation through a series of two vs. two robot soccer mat
   Tech United (Techunited@tue.nl)<br />
   René van de Molengraft - Project Sponsor and Technical Consultant (M.J.G.v.d.Molengraft@tue.nl)<br />
   Ruben Beumer (r.m.beumer@tue.nl) <br />
-
-
 - Ask for permission for using the surveillance cameras at the Robotics Lab.
   You may contact Ömür Arslan (o.arslan@tue.nl) to ask for the permission.
 - Get in touch with MSD2023-25.
 - Get in touch with Matthias Briegel<br />
   Matthias is the person who has previously worked on developing AutoRef system and he may share some interesting ideas for the development of the AutoRef system. (matthias_briegel@hotmail.com)
- 
-
 <br />
 
-  <!-- Suggestion for improvement
+<!-- Suggestion for improvement-->
 ## Suggestion for improvement
 
-- Currently, the OptiTrack is covering the half area of the field. 
-
--->
+- Scale the OptiTrack to cover the whole field.
+- Apply the penalty area rules.
+- Extend the algorithm to determine whether the ball out of play is corner kick, throw-ins and goal kick
+- Enhance the machine learning model by incorporating additional parameters such as the orientations of both the ball and the robot. Additionally, explore alternative machine learning techniques through experimentation.
+<br />
 <!-- Team -->
 ## Team
 
