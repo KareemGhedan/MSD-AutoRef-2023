@@ -106,6 +106,7 @@ The system undergoes validation through a series of two vs. two robot soccer mat
   Tech United (Techunited@tue.nl)<br />
   René van de Molengraft - Project Sponsor and Technical Consultant (M.J.G.v.d.Molengraft@tue.nl)<br />
   Ruben Beumer (r.m.beumer@tue.nl) <br />
+  Sander Doodeman (s.doodeman@student.tue.nl) - Ball tracking for OptiTrack <br />
 - Ask for permission for using the surveillance cameras at the Robotics Lab.
   You may contact Ruben or Aykut Işleyen (a.isleyen@tue.nl) to ask for the permission.
 - Get in touch with MSD2023-2025.
