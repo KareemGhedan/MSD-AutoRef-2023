@@ -110,9 +110,9 @@ The system undergoes validation through a series of two vs. two robot soccer mat
 - Get in touch with MSD2023-25.
 - Get in touch with Matthias Briegel<br />
   Matthias is the person who has previously worked on developing AutoRef system and he may share some interesting ideas for the development of the AutoRef system. (matthias_briegel@hotmail.com)
+ 
 
-
-
+<br />
 
   <!-- Suggestion for improvement
 ## Suggestion for improvement
