@@ -1,1 +1,0 @@
-This folder contains all the files and notes related to the stakeholders' meetings.

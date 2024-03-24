@@ -1,1 +1,0 @@
-All files and documents related to System Architecture will be stored here.

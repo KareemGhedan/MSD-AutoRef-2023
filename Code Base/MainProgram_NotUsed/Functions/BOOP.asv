@@ -1,0 +1,31 @@
+% Deniz Akyazi - BOOP Livestream Code ()
+% 07/03/2024
+% Livestream Version
+function  [ball_in, dummy_count] = BOOP(x_current,z_current, dummy_count)
+
+% Parameters
+ball_radius = 11e-2;
+field_z = [-4.08 4.08];
+field_x = [-6.12 6.12];
+ballie_track = [x_current z_current];
+ball_in = true;
+
+% Measurement errors/Data points
+
+        if ballie_track(1,1)-ball_radius > field_x(1,2) || ballie_track(1,2)-ball_radius > field_z(1,2)|| ...
+        ballie_track(1,2)+ball_radius < field_z(1,1) || ballie_track(1,1)+ball_radius < field_x(1,1)
+            % Ensuring ball is out + compensate measurement errors
+            dummy_count = dummy_count + 1;
+            if(dummy_count > out_threshold)
+                ball_in = false;
+                dummy_count = 0;
+            end
+        else % If the ball doesn't continue to be out of play, reset the counter
+            dummy_count = 0;
+            ball_in = true;
+        end
+end
+
+
+
+
