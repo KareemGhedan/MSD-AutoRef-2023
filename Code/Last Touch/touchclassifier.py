@@ -7,31 +7,35 @@ Original file is located at
     https://colab.research.google.com/drive/126Z1Nma9ek6geVx96CyUdZG_fxxkjoE7
 """
 
+# I need to use this version because Matlab has this version as well
+!pip install scikit-learn==1.3.0
+
+!pip show scikit-learn
+
+import warnings
+warnings.filterwarnings('ignore')
+
 # This library is needed to save RF model
 import joblib
 import statistics
 import numpy as np
 import pandas as pd
 import seaborn as sn
+from sklearn.svm import SVC
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve
 from sklearn.metrics import roc_auc_score
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix
 
-# I need to use this version because Matlab has this version as well
-!pip install scikit-learn==1.3.0
+dataset = pd.read_csv('/content/Dataset.csv')
 
-!pip show scikit-learn
+dataset = dataset
+dataset.head(5)
 
-dataset = pd.read_csv('/content/Dataset_Last.csv')
-
-dataset = dataset.iloc[:,6:]
-dataset
-
-dataset.to_csv('Dataset.csv', index = False)
-
-pd.read_csv('Dataset.csv')
-
-"""## Data Preprocessing
+"""# **Data Preprocessing**
 
 """
 
@@ -96,7 +100,10 @@ dataset.Touch.value_counts()
 
 sn.countplot(x='Touch',data=dataset,palette=["#eb383b","#3853eb"])
 
-"""**Learning and Model Selection**"""
+"""#**Learning and Model Selection**
+
+##**Dataset Spliting**
+"""
 
 # Separating target feature from the features
 y = dataset['Touch']
@@ -108,26 +115,172 @@ import random
 X_, X_test, y_, y_test = train_test_split(X, y, test_size = 0.20, random_state= 21)
 X_train, X_validation, y_train, y_validation = train_test_split(X_, y_, test_size = 0.20, random_state= 21)
 
-"""**Random Forest**"""
+X_train.shape
+
+X_validation.shape
+
+X_test.shape
+
+"""##**Model Selection**
+
+###**Support Vector Machine**
+"""
+
+# SVM
+classifierSVM = SVC(probability=True)
+classifierSVM.fit(X_train, y_train)
+y_pred_val_SVM = classifierSVM.predict(X_validation)
+print("************Results for SVM*************")
+print("Confusion Matrix for Validation Set\n")
+print(classification_report(y_validation, y_pred_val_SVM))
+
+y_pred_test_SVM = classifierSVM.predict(X_test)
+print("************Results for SVM*************")
+print("Confusion Matrix for Test Set\n")
+print(classification_report(y_test, y_pred_test_SVM))
+
+y_SVM_pred_prob=classifierSVM.predict_proba(X_test)[::,1]
+
+FPRate_SVM, TPRate_SVM, Threshold_SVM = roc_curve(y_test, y_SVM_pred_prob)
+AUC = roc_auc_score(y_test, y_SVM_pred_prob)
+plt.plot(FPRate_SVM,TPRate_SVM,label="data, AUC="+str(AUC))
+plt.legend(loc=4)
+plt.title ('ROC Curve SVM')
+plt.show()
+
+print(f"The score for the AUC ROC Curve is: {round(AUC,2)*100}%")
+
+"""###**MLP**"""
+
+# MLP
+classifierMLP = MLPClassifier((100,100))
+classifierMLP.fit(X_train, y_train)
+y_pred_val_MLP = classifierMLP.predict(X_validation)
+print("************Results for MLP*************")
+print("Confusion Matrix for Validation Set\n")
+print(classification_report(y_validation, y_pred_val_MLP))
+# classifierMLP.get_params()
+
+y_pred_test_MLP = classifierMLP.predict(X_test)
+print("************Results for MLP*************")
+print("Confusion Matrix for Test Set\n")
+print(classification_report(y_test, y_pred_test_MLP))
+
+y_MLP_pred_prob=classifierMLP.predict_proba(X_test)[::,1]
+
+FPRate, TPRate, Threshold = roc_curve(y_test, y_MLP_pred_prob)
+AUC = roc_auc_score(y_test, y_MLP_pred_prob)
+plt.plot(FPRate,TPRate,label="data, AUC="+str(AUC))
+plt.legend(loc=4)
+plt.title ('ROC Curve MLP')
+plt.show()
+
+print(f"The score for the AUC ROC Curve is: {round(AUC,2)*100}%")
+
+"""### **Dicision Tree**"""
+
+# Decision Tree
+classifierDT = DecisionTreeClassifier()
+classifierDT.fit(X_train, y_train)
+y_pred_val_DT = classifierDT.predict(X_validation)
+print("************Results for Decision Tree*************")
+print("Confusion Matrix for Validation Set\n")
+print(classification_report(y_validation, y_pred_val_DT))
+
+y_pred_test_DT = classifierDT.predict(X_test)
+print("************Results for Decision Tree*************")
+print("Confusion Matrix for Test Set\n")
+print(classification_report(y_test, y_pred_test_DT))
+
+y_DT_pred_prob=classifierDT.predict_proba(X_test)[::,1]
+
+FPRate, TPRate, Threshold = roc_curve(y_test, y_DT_pred_prob)
+AUC = roc_auc_score(y_test, y_DT_pred_prob)
+plt.plot(FPRate,TPRate,label="data, AUC="+str(AUC))
+plt.legend(loc=4)
+plt.title ('ROC Curve DT')
+plt.show()
+
+print(f"The score for the AUC ROC Curve is: {round(AUC,2)*100}%")
+
+"""###**Random Forest**"""
 
 # Random Forest
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report, confusion_matrix
-classifierRF = RandomForestClassifier(max_depth= 15,n_estimators=20)
+classifierRF = RandomForestClassifier(max_depth= 15,n_estimators=80)
 classifierRF.fit(X_train, y_train)
 y_pred_val_RF = classifierRF.predict(X_validation)
 print("************Results for Random Forest*************")
 print("Confusion Matrix for Validation Set\n")
 print(classification_report(y_validation, y_pred_val_RF))
 
+# per_tree_pred_val = [tree.predict(X_validation) for tree in classifierRF.estimators_]
+
+# FPRate, TPRate, not_imp = roc_curve(y_validation, mean_validation)
+# AUC = roc_auc_score(y_test, mean)
+# plt.plot(FPRate,TPRate,label="data, AUC="+str(AUC))
+# plt.legend(loc=4)
+# plt.title ('ROC Curve Validation Set')
+# plt.show()
+
+# print(f"The score for the AUC ROC Curve is: {round(AUC,2)*100}%")
+
+y_pred_test_RF = classifierRF.predict(X_test)
+print("************Results for Random Forest*************")
+print("Confusion Matrix for Test Set\n")
+print(classification_report(y_test, y_pred_test_RF))
+
+y_RF_pred_prob=classifierRF.predict_proba(X_test)[::,1]
+
+FPRate, TPRate, Threshold = roc_curve(y_test, y_RF_pred_prob)
+AUC = roc_auc_score(y_test, y_RF_pred_prob)
+plt.plot(FPRate,TPRate,label="data, AUC="+str(AUC))
+plt.legend(loc=4)
+plt.title ('ROC Curve RF')
+plt.show()
+
+print(f"The score for the AUC ROC Curve is: {round(AUC,2)*100}%")
+
+"""First Model"""
+
 # Random Forest
 from sklearn.ensemble import RandomForestClassifier
-classifierRF = RandomForestClassifier(max_depth= 15,n_estimators=20)
-classifierRF.fit(X_train, y_train)
-y_pred_test_RF = classifierRF.predict(X_test)
+from sklearn.metrics import classification_report, confusion_matrix
+classifierRF2 = RandomForestClassifier(max_depth= 15,n_estimators=25)
+classifierRF2.fit(X_train, y_train)
+y_pred_val_RF = classifierRF2.predict(X_validation)
+print("************Results for Random Forest*************")
+print("Confusion Matrix for Validation Set\n")
+print(classification_report(y_validation, y_pred_val_RF))
+
+y_RF_pred_prob_val=classifierRF2.predict_proba(X_validation)[::,1]
+
+FPRate, TPRate, Threshold = roc_curve(y_validation, y_RF_pred_prob_val)
+AUC = roc_auc_score(y_validation, y_RF_pred_prob_val)
+plt.plot(FPRate,TPRate,label="data, AUC="+str(AUC))
+plt.legend(loc=4)
+plt.title ('ROC Curve RF - Validation Set')
+plt.show()
+
+print(f"The score for the AUC ROC Curve is: {round(AUC,2)*100}%")
+
+# Random Forest
+y_pred_test_RF = classifierRF2.predict(X_test)
 print("************Results for Random Forest*************")
 print("Confusion Matrix for test Set\n")
 print(classification_report(y_test, y_pred_test_RF))
+
+
+
+y_RF_pred_prob=classifierRF2.predict_proba(X_test)[::,1]
+
+FPRate, TPRate, Threshold = roc_curve(y_test, y_RF_pred_prob)
+AUC = roc_auc_score(y_test, y_RF_pred_prob)
+plt.plot(FPRate,TPRate,label="data, AUC="+str(AUC))
+plt.legend(loc=4)
+plt.title ('ROC Curve RF - Test Set')
+plt.show()
+
+print(f"The score for the AUC ROC Curve is: {round(AUC,2)*100}%")
 
 #Plotting Confusion Matrix
 confusion_matrix_RF = confusion_matrix(y_test,y_pred_test_RF)
@@ -135,16 +288,55 @@ sn.heatmap(confusion_matrix_RF , annot=True,cmap="BuGn" , fmt='g')
 plt.tight_layout()
 plt.title('Confusion matrix RF\n')
 
-FPRate, TPRate, not_imp = roc_curve(y_test, y_pred_test_RF)
-AUC = roc_auc_score(y_test, y_pred_test_RF)
+FPRate, TPRate, not_imp = roc_curve(y_test, mean)
+AUC = roc_auc_score(y_test, mean)
 plt.plot(FPRate,TPRate,label="data, AUC="+str(AUC))
 plt.legend(loc=4)
-plt.title ('ROC CURVE MLP')
+plt.title ('ROC Curve Test Set')
 plt.show()
 
 print(f"The score for the AUC ROC Curve is: {round(AUC,2)*100}%")
 
-"""**Check the performance of the model for some real_time data.**"""
+"""###**Performance Comparision**"""
+
+from sklearn import metrics
+models=['Support Vector Machine', 'Melti Layer Perceptron', 'Decision Tree', 'Random Forest Classifier']
+accuracy=[y_pred_test_SVM, y_pred_test_MLP, y_pred_test_DT,y_pred_test_RF]
+
+for i,j in zip(models,accuracy):
+  print("Accuracy for {} : {}".format(i,round(metrics.accuracy_score(y_test,j),2)))
+
+FPRate_SVM, TPRate_SVM, Threshold_SVM = roc_curve(y_test, y_SVM_pred_prob)
+FPRate_MLP, TPRate_MLP, Threshold_MLP = roc_curve(y_test, y_MLP_pred_prob)
+FPRate_DT, TPRate_DT, Threshold_DT = roc_curve(y_test, y_DT_pred_prob)
+FPRate_RF, TPRate_RF, Threshold_RF = roc_curve(y_test, y_RF_pred_prob)
+
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(12,6))
+
+plt.plot(FPRate_SVM, TPRate_SVM,label="Support Vector Machine")
+plt.plot(FPRate_MLP, TPRate_MLP,label="Multi Layer Perceptron")
+plt.plot(FPRate_DT, TPRate_DT,label="Decision Tree")
+plt.plot(FPRate_RF, TPRate_RF,label="Random Forest")
+
+# Calculate AUC for each classifier
+auc_svm = metrics.auc(FPRate_SVM, TPRate_SVM)
+auc_mlp = metrics.auc(FPRate_MLP, TPRate_MLP)
+auc_dt = metrics.auc(FPRate_DT, TPRate_DT)
+auc_rf = metrics.auc(FPRate_RF, TPRate_RF)
+
+# Display AUC values in legend
+plt.legend(loc=4)
+plt.grid(color='b', ls = '-.', lw = 0.25)
+# Add AUC values to legend
+plt.text(0.63, 0.06, f"AUC_SVM: {auc_svm:.2f}\nAUC_MLP: {auc_mlp:.2f}\nAUC_DT: {auc_dt:.2f}\nAUC_RF: {auc_rf:.2f}", transform=plt.gca().transAxes)
+plt.show()
+
+"""Based on evaluation metrics **Random Forest** has been chosen as the **best model**.
+
+**Check the performance of the best model for some real_time data.**
+"""
 
 # Ground Truth: No_Touch
 data = {'X_dist': [0.0477],	'Y_dist':[-0.5307],	'Z_dist': [-0.4818],	'distance':[0.7184] }
