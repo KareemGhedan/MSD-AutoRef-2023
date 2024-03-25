@@ -1,0 +1,1 @@
+NatNetML.dll is in the CURRENT_FOLDER\lib\x64 directory
