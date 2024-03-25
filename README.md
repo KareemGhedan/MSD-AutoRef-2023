@@ -2,25 +2,17 @@
 <!--
 README to be edited according to the need.
 -->
-# AutoRef-Project-MSD2023
+
+<!--
+## Assistant Referee System - MSD2023
 <!--MSD_2023 Autonomous Referee Project-->
-
-Folders are rearranged.
-Code Base folder has all the Codes
-Report folder has everything else
-
-
+Assistant Referee System - MSD2023
+----------------------------------
 
 ## Table of Content
 
-Reports -> PMP, System Architecture, Registers, Meetings,  Techincal report, Executive summary, Final Presentation, Gantt Chart, feasibility study, LinkedInPost
-
-Codes -> 
-
 1. [About The Project](#about-the-project)
-<!--2. [Scope of the Project](#scope-of-the-project)-->
 2. [System Architecture](#system-architecture)
-<!--4. [Feasibility Studies](#feasibility-studies)-->
 3. [Method and Procedure](#method-and-procedure)
 4. [Implementation and Validation](#implementation-and-validation)
 5. [How to get smooth start](#how-to-get-smooth-start)
@@ -28,8 +20,8 @@ Codes ->
 7. [Team](#team)
 8. [Contents of the Folders](#contents-of-the-folders)
 9. [Reference](#Reference)
-
-
+<!--2. [Scope of the Project](#scope-of-the-project)
+4. [Feasibility Studies](#feasibility-studies)-->
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -90,46 +82,18 @@ e
 -->
 <!-- Method and procedure -->
 ## Method and Procedure
-Utilizing OptiTrack technology for ball and robot tracking, our collision detection system   employs three distinctive methodologies: 
+Utilizing OptiTrack technology for ball and robot tracking, our collision detection system employs three distinctive methodologies: 
 
 - The cameras are used to acquire the position of the ball center and robot position. The data was then filtered to remove noise.  
 
 - A robust machine learning approach is embraced, employing an ensemble of 80 estimators within a random forest classifier. This model utilizes features including vectorized distances between robots and the ball, along with the Euclidean distance. This machine learning method is favored for its resilience and ability to handle intricate interactions. 
-a
-d
-d
-
-T
-h
-i
-n
-g
-s
-
-h
-e
-r
-e
 
 
 <!-- Implementation and Validation -->
 ## Implementation and Validation
+The OptiTrack data provides the positions of both robots and the ball relative to the world coordinate system. To determine if the ball is out of play, the system compares its location and considers its radius relative to the field boundaries. For identifying the last touch, a random forest binary classifier utilizes ball and robot positions, transformed into X, Y, and Z distances, along with the Euclidean distance between them. Once the ball is out, the system tracks which team touched it last, updating a corresponding variable upon each touch. An intuitive User Interface communicates this decision to the referee, with an additional button offering proof of the decision. To optimize system performance during gameplay pauses, the program halts while the UI is active and resumes upon closure, alleviating computational load.
 
-a
-d
-d
-
-T
-h
-i
-n
-g
-s
-
-h
-e
-r
-e
+The system undergoes validation through a series of two vs. two robot soccer matches held at the Techunited arena at TU/e. These matches are overseen by human referees, and both the decisions made by the referees and the system's determinations are meticulously recorded. Utilizing footage from multiple CCTV cameras, the matches are reviewed in collaboration with referees to establish ground truth, enabling a thorough assessment of the system's performance in comparison to human referees.
 
  <!-- How to get smooth start -->
 ## How to get smooth start
@@ -140,58 +104,44 @@ e
   Some of the people that you can get in touch with:<br />
   Tech United Website: https://www.techunited.nl/en/<br />
   Tech United (Techunited@tue.nl)<br />
-  René van de Molengraft - Project Sponsor and Technical Consultant (M.J.G.v.d.Molengraft@tue.nl)<br />
+  René van de Molengraft (M.J.G.v.d.Molengraft@tue.nl) - Project Sponsor and Technical Consultant <br />
   Ruben Beumer (r.m.beumer@tue.nl) <br />
-
-
+  Sander Doodeman (s.doodeman@student.tue.nl) - Ball tracking for OptiTrack <br />
 - Ask for permission for using the surveillance cameras at the Robotics Lab.
-  You may contact Ömür Arslan (o.arslan@tue.nl) to ask for the permission.
-- Get in touch with MSD2023-25.
+  You may contact Ruben or Aykut Işleyen (a.isleyen@tue.nl) to ask for the permission.
+- Get in touch with MSD2023-2025.
 - Get in touch with Matthias Briegel<br />
   Matthias is the person who has previously worked on developing AutoRef system and he may share some interesting ideas for the development of the AutoRef system. (matthias_briegel@hotmail.com)
-   
-  <!-- Suggestion for improvement-->
+<br />
+
+<!-- Suggestion for improvement-->
 ## Suggestion for improvement
 
-a
-d
-d
-
-T
-h
-i
-n
-g
-s
-
-h
-e
-r
-e
-
-
+- Scale the OptiTrack to cover the whole field.
+- Apply the penalty area rules.
+- Extend the algorithm to determine whether the ball out of play is corner kick, throw-ins and goal kick
+- Enhance the machine learning model by incorporating additional parameters such as the orientations of both the ball and the robot. Additionally, explore alternative machine learning techniques through experimentation.
+<br />
 
 <!-- Team -->
 ## Team
 
 This project has been carried out by the Mechatronic Systems Design (MSD) 2023-25 at Eindhoven University of Technology (TU/e) for the 1st in-house project in Block II of the program. The team members are as follow:
 
-Quinten Swan - Design Engineer and Project manager (add email)<br />
+Quinten Swaan - Design Engineer and Project Manager (q.swaan@tue.nl)<br />
 Kareem Ghedan - Design Engineer and Team Leader (k.a.a.a.ghedan@tue.nl)<br />
-Joseph Tandio - Design Engineer and System Architect (add email)<br />
-Mahsa - Design Engineer and Scrum Master (add email)<br />
-Naheed - Design Engineer (n.tabassum@tue.nl)<br />
-Arjun Chauhan - Design Engineer (add email)<br />
-Deniz Akyasi - Design Engineer (add email)<br />
+Joseph W. Tandio - Design Engineer and System Architect (j.w.tandio@tue.nl)<br />
+Mahsa Barghi Mehmandari - Design Engineer and Scrum Master (m.barghi.mehmandari@tue.nl)<br />
+Naheed Tabassum - Design Engineer (n.tabassum@tue.nl)<br />
+Arjun Chauhan - Design Engineer (a.s.chauhan@tue.nl)<br />
+Deniz Akyazi - Design Engineer (d.akyazi@tue.nl)<br />
 Anshid Nuhman Pillat - Design Engineer (a.n.pillat@tue.nl)<br />
 
 <!-- Folder Contents -->
 ## Contents of the Folders
 
-The documents are housed in two distinct folders. Within the "Code Base" folder, you'll find the executed code alongside supplementary materials. Meanwhile, the "Reports" folder encompasses all project-related reports and activities, excluding the code itself.
+The documents are housed in two distinct folders. Within the "Code Base" folder, you will find the executed code alongside supplementary materials. Meanwhile, the "Reports" folder encompasses all project-related reports and activities, excluding the code itself.
 
-
-Also conatcings a small description about what each folder has.........
 
 <!-- Reference -->
 ## Reference
