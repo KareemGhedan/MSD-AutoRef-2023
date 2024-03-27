@@ -34,6 +34,8 @@ This system represents a significant advancement in the field of robotics and sp
 
 Specifically tailored for deployment in the Robocup Middle Size League (MSL), our project sought to revolutionize the way matches are officiated within this competitive arena. Through the seamless integration of state-of-the-art technologies, we envisioned a future where referees are empowered with enhanced decision-making capabilities, ensuring fair play and accurate adjudication in every match.
 
+Demo video: https://youtu.be/qXTO-nIDLwI?si=4KjXAIjrqkp6aGhj
+
 
 <!-- Scope of the project 
 ## Scope of the Project 
